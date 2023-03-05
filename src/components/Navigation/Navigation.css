@@ -1,0 +1,14 @@
+.dropdown-item:active {
+    background-color: gray;
+}
+
+.dropdown-toggle::after {
+    margin-left: 0.5em;
+}
+
+.dropdown-toggle::after {
+    border-top-color: gray;
+    border-bottom-color: gray;
+}
+
+.NavBar-custom {}

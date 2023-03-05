@@ -3,10 +3,11 @@ import './Navigation.css'
 import { Link } from 'react-router-dom'
 
 
+
 const Navigation = () => {
 
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar className='NavBar-custom' bg="dark" variant="dark" expand="lg">
             <Container>
                 <Link to='/'>
                     <Navbar.Brand>Trips App</Navbar.Brand>
@@ -19,10 +20,10 @@ const Navigation = () => {
                         </Link>
                         <NavDropdown title="Viajes" id="navbarScrollingDropdown">
                             <Link to='/viajes'>
-                                <NavDropdown.Item as='span'>Ver viajes</NavDropdown.Item>
+                                <NavDropdown.Item as='span' className='dropdown-item'>Ver viajes</NavDropdown.Item>
                             </Link>
                             <Link to='/crear-viaje'>
-                                <NavDropdown.Item as='span'>Crear viaje</NavDropdown.Item>
+                                <NavDropdown.Item as='span' className='dropdown-item'>Crear viaje</NavDropdown.Item>
                             </Link>
                         </NavDropdown>
                     </Nav>

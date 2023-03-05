@@ -13,7 +13,7 @@ Trips Routes
 |     /detalles/:id        | Trip details page     |          [x]      |
 |     /crear-viaje         | New trip form page    |          [x]      |
 |     /editar-viaje/:id    | Edit trip form page   |          [x]      |
-|     /eliminar-viaje/:id  | Delete trip           |          [x]      |
+
 
 
 User Routes
@@ -22,6 +22,6 @@ User Routes
 |     /registro         | Signup Page            |                     |
 |     /iniciar-sesion   | Login Page             |                     |
 |     /perfil/:id       | User profile Page      |          [x]        |
-|     /edit/:id         | çEdit profile form Page|          [x]        |
+|     /editar-perfil/:id         | Edit profile form Page|          [x]        |
 
 
