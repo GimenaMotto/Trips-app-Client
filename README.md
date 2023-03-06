@@ -7,12 +7,12 @@ Client Routes
 
 
 Trips Routes 
-|         URL           | Description           |    Protected         |
-|-----------------------|-----------------------|----------------------|
-|     /viajes              | Trips gallery page    |                   |
-|     /detalles/:id        | Trip details page     |        - [x]      |
-|     /crear-viaje         | New trip form page    |        - [x]      |
-|     /editar-viaje/:id    | Edit trip form page   |        - [x]      |
+|         URL              | Description           |    Protected   |
+|--------------------------|-----------------------|----------------|
+|     /viajes              | Trips gallery page    |                |
+|     /detalles/:id        | Trip details page     |     - [x]      |
+|     /crear-viaje         | New trip form page    |     - [x]      |
+|     /editar-viaje/:id    | Edit trip form page   |     - [x]      |
 
 
 
