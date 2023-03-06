@@ -13,7 +13,9 @@ const SignupForm = () => {
         password: '',
         avatar: '',
         description: '',
-        interests: []
+        interests: [],
+        gender: '',
+        age: ''
     })
 
     const navigate = useNavigate()
@@ -41,6 +43,10 @@ const SignupForm = () => {
     return (
 
         <Form onSubmit={handleFormSubmit}>
+            <Form.Group className="mb-3" controlId="email">
+                <Form.Label>Email</Form.Label>
+                <Form.Control type="email" value={signupData.email} onChange={handleInputChange} name="email" />
+            </Form.Group>
             <Row>
                 <Col>
                     <Form.Group className="mb-3" controlId="username">
@@ -57,10 +63,21 @@ const SignupForm = () => {
                 </Col>
             </Row>
 
-            <Form.Group className="mb-3" controlId="email">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" value={signupData.email} onChange={handleInputChange} name="email" />
-            </Form.Group>
+            <Row>
+                <Col>
+                    <Form.Group className="mb-3" controlId="gender">
+                        <Form.Label>Género</Form.Label>
+                        <Form.Control type="text" value={signupData.gender} onChange={handleInputChange} name="gender" />
+                    </Form.Group>
+
+                </Col>
+                <Col>
+                    <Form.Group className="mb-3" controlId="age">
+                        <Form.Label>Edad</Form.Label>
+                        <Form.Control type="text" value={signupData.age} onChange={handleInputChange} name="age" />
+                    </Form.Group>
+                </Col>
+            </Row>
 
             <Form.Group className="mb-3">
                 <Form.Label>Selecciona tu avatar</Form.Label>
@@ -80,8 +97,11 @@ const SignupForm = () => {
 
             <Form.Group className="mb-3">
                 <Form.Label>Sobre mi</Form.Label>
-                <Form.Control as="textarea" rows={3} value={signupData.description} onChange={handleInputChange} name="description" />
+                <Form.Control as="textarea" rows={2} value={signupData.description} onChange={handleInputChange} name="description" />
             </Form.Group>
+
+
+
 
             <div className="d-grid">
                 <Button variant="dark" type="submit">Registrarme</Button>

@@ -11,7 +11,7 @@ const SignupPage = () => {
 
                 <Col md={{ offset: 3, span: 6 }}>
 
-                    <h1>Registro</h1>
+                    <h3>Registro</h3>
 
                     <hr />
 
