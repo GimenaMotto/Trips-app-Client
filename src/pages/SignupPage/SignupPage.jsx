@@ -1,3 +1,4 @@
+import './SignupPage.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import SignupForm from '../../components/SignupForm/SignupForm'
 
@@ -5,7 +6,7 @@ const SignupPage = () => {
 
     return (
 
-        <Container>
+        <Container className="SignupPage">
 
             <Row>
 
