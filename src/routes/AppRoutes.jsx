@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import LoginPage from '../pages/LoginPage/LoginPage'
 import SignupPage from '../pages/SignupPage/SignupPage'
 
 const AppRoutes = () => {
@@ -11,7 +12,7 @@ const AppRoutes = () => {
             <Route path='/detalles/:id' element={<p>Page detalles- comp detalles</p>} />
             <Route path='/editar-viaje/:id' element={<p>Page editar-comp form editar</p>} />
             <Route path='/registro' element={<SignupPage />} />
-            <Route path='/iniciar-sesion' element={<p>Page login -comp form login</p>} />
+            <Route path='/iniciar-sesion' element={<LoginPage />} />
             <Route path='/perfil/:id ' element={<p>Page perfil- comp detalles perfil id</p>} />
             <Route path='/editar-perfil/:id' element={<p>Page editar perfil-comp form editar perfil</p>} />
             <Route path='*' element={<p>404</p>} />

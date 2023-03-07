@@ -1,11 +1,14 @@
+import { useContext } from 'react'
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import './Navigation.css'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../contexts/auth.context'
 
 
 
 const Navigation = () => {
 
+    const { user, logout } = useContext(AuthContext)
     return (
         <Navbar className='NavBar-custom' bg="dark" variant="dark" expand="lg">
             <Container>
@@ -26,6 +29,25 @@ const Navigation = () => {
                                 <NavDropdown.Item as='span' className='dropdown-item'>Crear viaje</NavDropdown.Item>
                             </Link>
                         </NavDropdown>
+                    </Nav>
+                    <Nav className="ms-auto">
+                        {user ? <> <Link><Nav.Link as="span" onClick={logout}>Cerrar sesión</Nav.Link></Link>
+                        </>
+                            :
+                            <>
+                                <NavDropdown title="Usuario" id="navbarScrollingDropdown">
+                                    <Link to='/registro'>
+                                        <NavDropdown.Item as='span' className='dropdown-item'>Registro</NavDropdown.Item>
+                                    </Link>
+                                    <Link to='/iniciar-sesion'>
+                                        <NavDropdown.Item as='span' className='dropdown-item'>Iniciar sesión</NavDropdown.Item>
+                                    </Link>
+                                </NavDropdown>
+                            </>
+                        }
+
+                        {user && <Navbar.Text>Bienvenid@, {user.username} | </Navbar.Text>}
+                        <Nav />
                     </Nav>
                 </Navbar.Collapse>
             </Container>
