@@ -1,0 +1,16 @@
+.DetailsTripTitle {
+    margin-top: 30px;
+}
+
+.DetailsTripTitle h3 {
+    text-align: center;
+}
+
+.CarouselTripsDetails {
+    margin-top: 30px;
+}
+
+.CarouselTripsDetails .img-carousel {
+    height: auto;
+    max-width: 70%;
+}
