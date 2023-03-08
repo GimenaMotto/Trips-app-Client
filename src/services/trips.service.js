@@ -20,7 +20,13 @@ class TripService {
         return this.api.post('/saveTrip', tripData)
     }
 
-    //faltan rutas put y delete 
+    editTrip(trip_id, tripData) {
+        return this.api.put(`/editTrip/${trip_id}`, tripData)
+    }
+
+    deleteTrip(trip_id) {
+        return this.api.delete(`/deleteTrip/${trip_id}`)
+    }
 }
 
 const tripsService = new TripService

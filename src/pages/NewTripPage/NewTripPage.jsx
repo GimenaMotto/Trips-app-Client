@@ -17,12 +17,14 @@ const NewTripPage = () => {
         <Container className="NewTripPage">
             <Row>
 
-                <Col md={{ offset: 0, span: 12 }}>
+                <Col md={{ offset: 1, span: 10 }}>
                     <h3>Nuevo Viaje</h3>
                     <hr />
                     <NewTripForm fireFinalActions={fireFinalActions} />
                 </Col>
             </Row>
+
+
         </Container>
 
     )

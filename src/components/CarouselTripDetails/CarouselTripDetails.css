@@ -1,0 +1,18 @@
+.CarouselTripsDetails .Img-carousel {
+    border-radius: 10px;
+}
+
+.CarouselTripsDetails .carousel-control-prev,
+.CarouselTripsDetails .carousel-control-next {
+    background-color: transparent;
+}
+
+.carousel-indicators li {
+    background-color: transparent;
+    border: 1px solid gray;
+}
+
+.carousel-indicators .active {
+    background-color: gray;
+    border: 1px solid transparent;
+}

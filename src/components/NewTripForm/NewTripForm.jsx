@@ -2,6 +2,8 @@ import './NewTripForm.css'
 import { useState } from 'react'
 import tripsService from '../../services/trips.service'
 import { Form, Row, Col, Button } from "react-bootstrap"
+import uploadServices from '../../services/upload.services'
+import { useNavigate } from 'react-router-dom'
 
 const NewTripForm = ({ fireFinalActions }) => {
 
@@ -14,7 +16,7 @@ const NewTripForm = ({ fireFinalActions }) => {
         budget: '',
         destination: ''
     })
-
+    const navigate = useNavigate()
     const handleInputChange = e => {
         const { value, name } = e.target
         setTripData({ ...tripData, [name]: value })
@@ -27,6 +29,7 @@ const NewTripForm = ({ fireFinalActions }) => {
             .saveTrip(tripData)
             .then(({ data }) => {
                 fireFinalActions()
+                navigate('/viajes')
             })
             .catch(err => console.log(err))
     }
@@ -35,37 +38,41 @@ const NewTripForm = ({ fireFinalActions }) => {
         <div className="TripForm">
             <Form onSubmit={handleTripSubmit}>
                 <Row>
-                    <Col>
+                    <Col md={6}>
                         <Form.Group className="mb-3" controlId="title">
                             <Form.Label>Título del viaje:</Form.Label>
                             <Form.Control type="text" name="title" value={tripData.title} onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col md={6}>
                         <Form.Group className="mb-3">
                             <Form.Label>Imágenes del destino:</Form.Label>
                             <Form.Control type="file" value={tripData.images} onChange={handleInputChange} name="images" multiple />
                         </Form.Group>
                     </Col>
                 </Row>
-                <Form.Group className="mb-3" controlId="destination">
-                    <Form.Label>Destino:</Form.Label>
-                    <Form.Control type="text" name="destination" value={tripData.destination} onChange={handleInputChange} />
-                </Form.Group>
                 <Row>
-                    <Col>
+                    <Col md={6}>
+                        <Form.Group className="mb-3" controlId="destination">
+                            <Form.Label>Destino:</Form.Label>
+                            <Form.Control type="text" name="destination" value={tripData.destination} onChange={handleInputChange} />
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={4}>
                         <Form.Group className="mb-3" controlId="startDate">
                             <Form.Label>Fecha de partida:</Form.Label>
                             <Form.Control type="date" name="startDate" value={tripData.startDate} onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col md={4}>
                         <Form.Group className="mb-3" controlId="endDate">
                             <Form.Label>Fecha de regreso:</Form.Label>
                             <Form.Control type="date" name="endDate" value={tripData.endDate} onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
-                    <Col>
+                    <Col md={4}>
                         <Form.Group className="mb-3" controlId="budget">
                             <Form.Label>Presupuesto:</Form.Label>
                             <Form.Control type="text" name="budget" value={tripData.budget} onChange={handleInputChange} />
@@ -80,7 +87,7 @@ const NewTripForm = ({ fireFinalActions }) => {
                     <Button variant="dark" type="submit">Crear viaje</Button>
                 </div>
             </Form>
-        </div>
+        </div >
     )
 }
 

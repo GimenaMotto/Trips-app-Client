@@ -28,7 +28,7 @@ const TripPage = () => {
             <Container className="TripsPage">
                 <Row>
                     <Col >
-                        <h3>Viajes</h3>
+                        <h3>Viajes organizados por usuarios de 360</h3>
                         <hr />
                         <TripsList trips={trips} />
                     </Col>

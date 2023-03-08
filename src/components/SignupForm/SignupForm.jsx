@@ -49,7 +49,7 @@ const SignupForm = () => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                setImageUrl({ ...usersData, imageUrl: res.data.cloudinary_url }) // esta parte me da error
+                setSignupData({ ...signupData, avatar: res.data.cloudinary_url })
             })
             .catch(err => console.log(err))
     }
@@ -79,15 +79,15 @@ const SignupForm = () => {
             </Row>
 
             <Row>
-                <Col>
+                {/* <Col>
                     <Form.Select className="mb-3" controlId="gender" name="gender" onChange={handleInputChange}>
                         <option>Género</option>
-                        <option value="MALE">Male</option>
-                        <option value="FEMALE">Female</option>
-                        <option value="UNDEFINED">Other</option>
+                        <option value="mujer">mujer</option>
+                        <option value="hombre">hombre</option>
+                        <option value="no binario">no binario</option>
                     </Form.Select>
 
-                </Col>
+                </Col> */}
                 <Col>
                     <Form.Group className="mb-3" controlId="age">
                         <Form.Label>Edad</Form.Label>
