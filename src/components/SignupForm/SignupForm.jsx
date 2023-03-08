@@ -3,6 +3,7 @@ import { useState } from "react"
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import authService from '../../services/auth.services'
 import { useNavigate } from 'react-router-dom'
+import uploadServices from '../../services/upload.services'
 
 
 const SignupForm = () => {
@@ -40,6 +41,20 @@ const SignupForm = () => {
             .catch(err => console.log(err))
     }
 
+    const handleFileUpload = e => {
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setImageUrl({ ...usersData, imageUrl: res.data.cloudinary_url }) // esta parte me da error
+            })
+            .catch(err => console.log(err))
+    }
+
+
     return (
 
         <Form onSubmit={handleFormSubmit}>
@@ -65,10 +80,12 @@ const SignupForm = () => {
 
             <Row>
                 <Col>
-                    <Form.Group className="mb-3" controlId="gender">
-                        <Form.Label>Género</Form.Label>
-                        <Form.Control type="text" value={signupData.gender} onChange={handleInputChange} name="gender" />
-                    </Form.Group>
+                    <Form.Select className="mb-3" controlId="gender" name="gender" onChange={handleInputChange}>
+                        <option>Género</option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                        <option value="UNDEFINED">Other</option>
+                    </Form.Select>
 
                 </Col>
                 <Col>
@@ -79,10 +96,11 @@ const SignupForm = () => {
                 </Col>
             </Row>
 
-            <Form.Group className="mb-3">
-                <Form.Label>Selecciona tu avatar</Form.Label>
-                <Form.Control type="file" value={signupData.avatar} onChange={handleInputChange} name="avatar" />
+            <Form.Group className="mb-3" controlId="avatar">
+                <Form.Label>Imagen (URL)</Form.Label>
+                <Form.Control type="file" onChange={handleFileUpload} />
             </Form.Group>
+
 
             <Form.Group className="mb-3">
                 <Form.Label>Intereses</Form.Label>
