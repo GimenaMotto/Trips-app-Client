@@ -1,8 +1,9 @@
 import './TripDetailsPage.css'
-import { useEffect, useState } from "react"
-import { Container, Row, Col, Button, Carousel } from "react-bootstrap"
+import { useEffect, useState, useContext } from "react"
+import { Container, Row, Col, Button, Carousel, Card } from "react-bootstrap"
 import { Link, useParams } from "react-router-dom"
 import tripsService from '../../services/trips.service'
+// import { AuthContext } from '../../contexts/auth.context'
 
 const TripDetailsPage = () => {
 
@@ -19,6 +20,7 @@ const TripDetailsPage = () => {
 
 
     return (
+        //sacar fuera carousel
         <Container className="DetailsTripTitle mb-3">
             <Row >
                 <Col md={{ offset: 3, span: 6 }}>
@@ -38,8 +40,8 @@ const TripDetailsPage = () => {
                                     alt="First slide"
                                 />
                                 <Carousel.Caption>
-                                    <h3>{trip.title}</h3>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                    {/* <h3>{trip.title}</h3>
+                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
                                 </Carousel.Caption>
                             </Carousel.Item>
                             <Carousel.Item interval={500}>
@@ -49,8 +51,8 @@ const TripDetailsPage = () => {
                                     alt="First slide"
                                 />
                                 <Carousel.Caption>
-                                    <h3>{trip.title}</h3>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                    {/* <h3>{trip.title}</h3>
+                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p> */}
                                 </Carousel.Caption>
                             </Carousel.Item>
                         </Carousel>
@@ -58,17 +60,44 @@ const TripDetailsPage = () => {
                 </Row>
 
             </Container>
+            {/* sacar fuera card */}
+
             <Row>
                 <Col md={{ span: 6, offset: 3 }} className="mb-3">
-                    <div>{trip.description}</div>
-                </Col>
-            </Row>
-            <Row>
-                <Col md={{ span: 6, offset: 3 }} className="mb-3">
-                    <div> Fecha de partida: {new Date(trip.startDate).toLocaleDateString()}</div>
-                </Col>
-                <Col md={{ span: 6, offset: 3 }} className="mb-3">
-                    <div> Fecha de regreso: {new Date(trip.endDate).toLocaleDateString()} </div>
+                    <Card>
+                        <Card.Body>
+                            <Card.Title className="mb-3">{trip.title}</Card.Title>
+                            <Card.Subtitle className="mb-3 text-muted">Partida:{new Date(trip.startDate).toLocaleDateString()}</Card.Subtitle>
+                            <Card.Subtitle className="mb-3 text-muted">Regreso:{new Date(trip.endDate).toLocaleDateString()}</Card.Subtitle>
+                            <Card.Text className="mb-3">
+                                {trip.description}
+                            </Card.Text>
+                            <Row>
+                                <Col className="mb-3">
+                                    <Link to="">
+                                        <Button variant="dark" as="span"> Sumarse al viaje</Button>
+                                    </Link>
+                                </Col>
+                                <Col className="mb-3">
+                                    <Link to="">
+                                        <Button variant="dark" as="span"> Dejar el viaje</Button>
+                                    </Link>
+                                </Col>
+                            </Row>
+                            <Row >
+                                <Col className="mb-3">
+                                    <Link to="">
+                                        <Button variant="dark" as="span"> Editar</Button>
+                                    </Link>
+                                </Col>
+                                <Col className="mb-3">
+                                    <Link to="">
+                                        <Button variant="dark" as="span"> Eliminar</Button>
+                                    </Link>
+                                </Col>
+                            </Row>
+                        </Card.Body>
+                    </Card>
                 </Col>
             </Row>
 
