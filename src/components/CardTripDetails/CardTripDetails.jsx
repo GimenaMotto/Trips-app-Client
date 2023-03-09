@@ -4,12 +4,13 @@ import { Link, } from "react-router-dom"
 import { useParams } from 'react-router-dom'
 import tripsService from '../../services/trips.service'
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { AuthContext } from '../../contexts/auth.context'
 
 
 const CardTripDetails = ({ trip }) => {
 
-
+    const { user } = useContext(AuthContext)
     const { trip_id } = useParams()
     const navigate = useNavigate()
 
@@ -21,6 +22,38 @@ const CardTripDetails = ({ trip }) => {
             })
             .catch(err => console.log(err))
     }
+
+    const [tripData, setNewData] = useState({
+        travellers: ''
+    })
+    // copia del estado
+
+    const handleJoinTrip = () => {
+        tripsService
+            .joinToTrip(trip_id, tripData)
+            .then(({ data }) => {
+
+                let { travellers } = data
+                setNewData({ travellers })
+                // console.log(tripData)
+                navigate(`/viajes`)
+            })
+            .catch(err => console.log(err))
+    }
+
+    // const handleLeaveTrip = () => {
+    //     tripsService
+    //         .leaveTrip(trip_id, setNewData)
+    //         .then(({ data }) => {
+    //             let { travellers } = data
+    //             setNewData({ travellers })
+    //             navigate(`/detalles/${trip_id}`)
+    //         })
+    // }
+
+    useEffect(() => {
+        console.log(trip)
+    }, [trip])
 
     return (
         <Card>
@@ -36,11 +69,14 @@ const CardTripDetails = ({ trip }) => {
                         </Card.Subtitle>
                     </ListGroup.Item>
                     <ListGroupItem className="m-2 mt-2">
-                        <Card.Subtitle>Organizador:</Card.Subtitle>
+                        <Card.Subtitle>Organizador:{trip.organizer?.username}</Card.Subtitle>
                     </ListGroupItem>
 
                     <ListGroupItem className="m-2 mt-2">
-                        <Card.Subtitle>Viajerxs:</Card.Subtitle>
+                        <Card.Subtitle>Viajerxs:{
+                            trip.travellers?.map(elm => {
+                                return <p>{elm.username}</p>
+                            })}</Card.Subtitle>
                     </ListGroupItem>
                 </ListGroup>
 
@@ -53,24 +89,26 @@ const CardTripDetails = ({ trip }) => {
                 <Row>
                     <Col className="m-3 d-flex justify-content-center">
                         <Link to="">
-                            <Button variant="dark" as="span"> Sumarse al viaje</Button>
+                            <Button variant="dark" as="span" onClick={handleJoinTrip}> Sumarse al viaje</Button>
                         </Link>
                     </Col>
                     <Col className="m-3 d-flex justify-content-center">
                         <Link to="">
-                            <Button variant="dark" as="span"> Abandonar viaje</Button>
+                            <Button variant="dark" as="span" > Abandonar viaje</Button>
+                            {/* onClick={handleLeaveTrip} */}
                         </Link>
                     </Col>
                 </Row>
                 <Row >
                     <Col className="m-3 d-flex justify-content-center">
                         <Link to={`/editar-viaje/${trip_id}`}>
-                            <Button variant="dark" as="span"> Editar</Button>
+                            {(user._id === trip.organizer || user.role === 'ADMIN') && <Button variant="dark" as="span"> Editar</Button>}
+
                         </Link>
                     </Col>
                     <Col className="m-3 d-flex justify-content-center">
                         <Link to="">
-                            <Button variant="danger" as="span" onClick={handleTripDelete}> Eliminar</Button>
+                            {(user._id === trip.organizer || user.role === 'ADMIN') && <Button variant="danger" as="span" onClick={handleTripDelete}> Eliminar</Button>}
                         </Link>
                     </Col>
                 </Row>

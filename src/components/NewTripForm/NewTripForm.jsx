@@ -1,12 +1,15 @@
 import './NewTripForm.css'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import tripsService from '../../services/trips.service'
 import { Form, Row, Col, Button } from "react-bootstrap"
 import uploadServices from '../../services/upload.services'
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../../contexts/auth.context'
 
 const NewTripForm = ({ fireFinalActions }) => {
 
+    const { user } = useContext(AuthContext)
+    console.log(user)
     const [tripData, setTripData] = useState({
         title: '',
         description: '',
