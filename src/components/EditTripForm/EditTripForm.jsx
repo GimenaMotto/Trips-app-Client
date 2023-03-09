@@ -1,3 +1,4 @@
+import formatedDate from '../../utils/formatDate'
 import './EditTripForm.css'
 import { Form, Row, Col, Button } from "react-bootstrap"
 import tripsService from '../../services/trips.service'
@@ -28,19 +29,22 @@ const EditTripForm = ({ fireFinalActions }) => {
             .getOneTrip(trip_id)
             .then(({ data }) => {
                 console.log(data)
-                let { title, description, startDate, budget, destination } = data
-                if (!title) { title = '' }
-                if (!description) { description = '' }
-                if (!budget) { budget = '' }
-                if (!destination) { destination = '' }
-                if (!startDate) { startDate = '' }
+                let { title, description, startDate, endDate, budget, destination } = data
+                // if (!title) { title = '' }
+                // if (!description) { description = '' }
+                // if (!budget) { budget = '' }
+                // if (!destination) { destination = '' }
+                // if (!startDate) { startDate = '' }
+
+                const formatedStartDate = formatedDate(startDate)
+                const formatedEndDate = formatedDate(endDate)
 
                 // hacer en utils una función para las fechas  cuando terminemos el crud o pasar en lugar de formatedDate '',
                 // console.log(new Date(startDate).toLocaleDateString())
-                const formatedDate = `${new Date(startDate).getFullYear()}-0${new Date(startDate).getMonth() + 1}-0${new Date(startDate).getDate()}`
-                console.log(formatedDate)
+                // const formatedDate = `${new Date(startDate).getFullYear()}-0${new Date(startDate).getMonth() + 1}-0${new Date(startDate).getDate()}`
+                // console.log(formatedDate)
 
-                setNewData({ title, description, startDate: formatedDate, endDate: formatedDate, images: [], budget, destination })
+                setNewData({ title, description, startDate: formatedStartDate, endDate: formatedEndDate, images: [], budget, destination })
             })
             .catch(err => console.log(err))
     }
