@@ -7,6 +7,7 @@ import TripPage from '../pages/TripsPage/TripsPage'
 import TripDetailsPage from '../pages/TripDetailsPage/TripDetailsPage'
 import EditTripPage from '../pages/EditTripPage/EditTripPage'
 import PrivateRoute from './PrivateRoute'
+import UsersPage from '../pages/UsersPage/UsersPage'
 
 const AppRoutes = () => {
 
@@ -24,8 +25,9 @@ const AppRoutes = () => {
             </Route>
 
 
-            <Route path='/perfil/:id ' element={<p>Page perfil- comp detalles perfil id</p>} />
-            <Route path='/editar-perfil/:id' element={<p>Page editar perfil-comp form editar perfil</p>} />
+            <Route path='/comunidad' element={<UsersPage />} />
+            <Route path='/perfil/:user_id' element={<p>Page perfil- comp detalles perfil id</p>} />
+            <Route path='/editar-perfil/:user_id' element={<p>Page editar perfil-comp form editar perfil</p>} />
             <Route path='*' element={<p>404</p>} />
 
         </Routes>

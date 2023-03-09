@@ -41,7 +41,11 @@ const SignupForm = () => {
             .catch(err => console.log(err))
     }
 
+    const [loadingImage, setLoadingImage] = useState()
+
     const handleFileUpload = e => {
+
+        setLoadingImage(true)
 
         const formData = new FormData()
         formData.append('imageData', e.target.files[0])
@@ -50,8 +54,12 @@ const SignupForm = () => {
             .uploadimage(formData)
             .then(res => {
                 setSignupData({ ...signupData, avatar: res.data.cloudinary_url })
+                setLoadingImage(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                setLoadingImage(false)
+            })
     }
 
 
@@ -72,38 +80,41 @@ const SignupForm = () => {
 
                 <Col>
                     <Form.Group className="mb-3" controlId="password">
-                        <Form.Label>Contraseña</Form.Label>
+                        <Form.Label>Contraseña: </Form.Label>
                         <Form.Control type="password" value={signupData.password} onChange={handleInputChange} name="password" />
                     </Form.Group>
                 </Col>
             </Row>
 
             <Row>
-                {/* <Col>
-                    <Form.Select className="mb-3" controlId="gender" name="gender" onChange={handleInputChange}>
-                        <option>Género</option>
-                        <option value="mujer">mujer</option>
-                        <option value="hombre">hombre</option>
-                        <option value="no binario">no binario</option>
-                    </Form.Select>
+                <Col>
+                    <Form.Group>
+                        <Form.Label>Género: </Form.Label>
+                        <Form.Select className="mb-3" controlId="gender" name="gender" onChange={handleInputChange}>
+                            <option value="no definido">No definido</option>
+                            <option value="mujer">Mujer</option>
+                            <option value="hombre">Hombre</option>
+                            <option value="no binario">No binario</option>
+                        </Form.Select>
+                    </Form.Group>
 
-                </Col> */}
+                </Col>
                 <Col>
                     <Form.Group className="mb-3" controlId="age">
-                        <Form.Label>Edad</Form.Label>
+                        <Form.Label>Edad: </Form.Label>
                         <Form.Control type="text" value={signupData.age} onChange={handleInputChange} name="age" />
                     </Form.Group>
                 </Col>
             </Row>
 
             <Form.Group className="mb-3" controlId="avatar">
-                <Form.Label>Imagen (URL)</Form.Label>
-                <Form.Control type="file" onChange={handleFileUpload} />
+                <Form.Label>Avatar: </Form.Label>
+                <Form.Control type="file" onChange={handleFileUpload} multiple />
             </Form.Group>
 
 
             <Form.Group className="mb-3">
-                <Form.Label>Intereses</Form.Label>
+                <Form.Label>Intereses: </Form.Label>
                 <Form.Select className='FormSelect' id="interests" size={2} multiple value={signupData.interests} onChange={handleInputChange} name="interests">
                     <option value='Naturaleza'>Naturaleza</option>
                     <option value='Playa'>Playa</option>
@@ -122,7 +133,7 @@ const SignupForm = () => {
 
 
             <div className="d-grid mb-5">
-                <Button variant="dark" type="submit">Registrarme</Button>
+                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Registrarme'}</Button>
             </div>
 
         </Form>

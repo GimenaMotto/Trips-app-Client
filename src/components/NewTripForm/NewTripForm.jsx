@@ -34,6 +34,33 @@ const NewTripForm = ({ fireFinalActions }) => {
             .catch(err => console.log(err))
     }
 
+    const [loadingImage, setLoadingImage] = useState()
+
+    const handleFileUpload = e => {
+
+        setLoadingImage(true)
+
+        const formData = new FormData()
+        for (let key in e.target.files) {
+            formData.append('imageData', e.target.files[key])
+        }
+
+
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setTripData({ ...tripData, images: res.data.cloudinary_url })
+                setLoadingImage(false)
+            })
+            .catch(err => {
+                console.log(err)
+                setLoadingImage(false)
+            })
+    }
+
+
+
     return (
         <div className="TripForm">
             <Form onSubmit={handleTripSubmit}>
@@ -45,10 +72,11 @@ const NewTripForm = ({ fireFinalActions }) => {
                         </Form.Group>
                     </Col>
                     <Col md={6}>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="mb-3" controlId="images">
                             <Form.Label>Imágenes del destino:</Form.Label>
-                            <Form.Control type="file" value={tripData.images} onChange={handleInputChange} name="images" multiple />
+                            <Form.Control type="file" onChange={handleFileUpload} name="images" multiple />
                         </Form.Group>
+
                     </Col>
                 </Row>
                 <Row>
@@ -84,7 +112,7 @@ const NewTripForm = ({ fireFinalActions }) => {
                     <Form.Control type="textarea" rows={2} name="description" value={tripData.description} onChange={handleInputChange} />
                 </Form.Group>
                 <div className="d-grid mb-5">
-                    <Button variant="dark" type="submit">Crear viaje</Button>
+                    <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear viaje'}</Button>
                 </div>
             </Form>
         </div >

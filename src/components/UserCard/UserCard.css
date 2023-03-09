@@ -1,0 +1,24 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:focus {
+    color: gray;
+}
+
+a:hover {
+    color: #555;
+
+}
+
+a:active {
+    color: #ccc;
+
+}
+
+.card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
