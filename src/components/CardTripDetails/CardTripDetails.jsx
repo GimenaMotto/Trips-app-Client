@@ -100,9 +100,9 @@ const CardTripDetails = ({ trip, loadTripData }) => {
 
                     <ListGroupItem className="m-2 mt-2">
                         <Card.Subtitle>Viajerxs: </Card.Subtitle>
-                        <div className="d-flex justify-content-between">
+                        <div className="d-flex justify-content">
                             {trip.travellers?.map((elm, i) => (
-                                <Figure key={i} className="figure">
+                                <Figure key={i} className="figure m-2">
                                     <Figure.Image className="rounded-circle img-fluid traveller-avatar" src={elm.avatar} alt={elm.username} />
                                     <Figure.Caption >
                                         <span className="cardDetails">{elm.username}</span>
@@ -134,13 +134,14 @@ const CardTripDetails = ({ trip, loadTripData }) => {
                 <Row >
                     <Col className="m-3 d-flex justify-content-center">
                         <Link to={`/editar-viaje/${trip_id}`}>
-                            {(user._id === trip.organizer || user.role === 'ADMIN') && <Button variant="dark" as="span"> Editar</Button>}
+                            {(user._id === trip.organizer?._id || user.role === 'ADMIN') && <Button variant="dark" as="span"> Editar</Button>}
 
                         </Link>
                     </Col>
                     <Col className="m-3 d-flex justify-content-center">
                         <Link to="">
-                            {(user._id === trip.organizer || user.role === 'ADMIN') && <Button variant="danger" as="span" onClick={handleTripDelete}> Eliminar</Button>}
+                            {(user._id === trip.organizer?._id || user.role === 'ADMIN') && <Button variant="danger" as="span" onClick={handleTripDelete}> Eliminar</Button>}
+
                         </Link>
                     </Col>
                 </Row>

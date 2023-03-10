@@ -4,10 +4,8 @@ import { Form, Row, Col, Button } from "react-bootstrap"
 import tripsService from '../../services/trips.service'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-
 const EditTripForm = ({ fireFinalActions }) => {
     const navigate = useNavigate()
-
     const [newData, setNewData] = useState({
         title: '',
         description: '',
@@ -17,41 +15,35 @@ const EditTripForm = ({ fireFinalActions }) => {
         budget: '',
         destination: ''
     })
-
     const { trip_id } = useParams()
-
     useEffect(() => {
         loadData()
     }, [])
-
     const loadData = () => {
         tripsService
             .getOneTrip(trip_id)
             .then(({ data }) => {
                 console.log(data)
-                let { title, description, startDate, endDate, budget, destination } = data
+                let { title, description, startDate, endDate, budget, destination, images } = data
                 const formatedStartDate = formatedDate(startDate)
                 const formatedEndDate = formatedDate(endDate)
+
                 setNewData({ title, description, startDate: formatedStartDate, endDate: formatedEndDate, images: [], budget, destination })
+                console.log(newData)
             })
             .catch(err => console.log(err))
     }
-
-
     const handleInputChange = e => {
         const { value, name } = e.target
         setNewData({ ...newData, [name]: value })
             .then(({ data }) => {
                 fireFinalActions()
                 navigate('/viajes')
-
             })
             .catch(err => console.log(err))
     }
-
     const handleTripSubmit = e => {
         e.preventDefault()
-
         tripsService
             .editTrip(trip_id, newData)
             .then(({ data }) => {
@@ -110,5 +102,4 @@ const EditTripForm = ({ fireFinalActions }) => {
         </Form>
     )
 }
-
 export default EditTripForm
