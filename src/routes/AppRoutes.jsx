@@ -22,12 +22,13 @@ const AppRoutes = () => {
                 <Route path='/detalles/:trip_id' element={<TripDetailsPage />} />
                 <Route path='/crear-viaje' element={<NewTripPage />} />
                 <Route path='/editar-viaje/:trip_id' element={<EditTripPage />} />
+                <Route path='/comunidad' element={<UsersPage />} />
+                <Route path='/perfil/:user_id' element={<p>Page perfil- comp detalles perfil id</p>} />
+                <Route path='/editar-perfil/:user_id' element={<p>Page editar perfil-comp form editar perfil</p>} />
             </Route>
 
 
-            <Route path='/comunidad' element={<UsersPage />} />
-            <Route path='/perfil/:user_id' element={<p>Page perfil- comp detalles perfil id</p>} />
-            <Route path='/editar-perfil/:user_id' element={<p>Page editar perfil-comp form editar perfil</p>} />
+
             <Route path='*' element={<p>404</p>} />
 
         </Routes>

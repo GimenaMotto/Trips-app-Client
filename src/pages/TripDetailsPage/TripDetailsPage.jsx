@@ -7,6 +7,7 @@ import CarouselTripDetails from '../../components/CarouselTripDetails/CarouselTr
 import CardTripDetails from '../../components/CardTripDetails/CardTripDetails'
 
 
+
 const TripDetailsPage = () => {
 
     const [trip, setTrip] = useState({})
@@ -14,11 +15,15 @@ const TripDetailsPage = () => {
     const { trip_id } = useParams()
 
     useEffect(() => {
+        loadTripData()
+    }, [])
+
+    const loadTripData = () => {
         tripsService
             .getOneTrip(trip_id)
             .then(({ data }) => setTrip(data))
             .catch(err => console.log(err))
-    }, [])
+    }
 
     return (
 
@@ -34,7 +39,7 @@ const TripDetailsPage = () => {
 
             <Row>
                 <Col md={{ span: 6, offset: 3 }} className="mb-3">
-                    <CardTripDetails trip={trip} />
+                    <CardTripDetails trip={trip} loadTripData={loadTripData} />
                 </Col>
             </Row>
 

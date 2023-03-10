@@ -29,15 +29,10 @@ const Navigation = () => {
                                 <NavDropdown.Item as='span' className='dropdown-item'>Crear viaje</NavDropdown.Item>
                             </Link>
                         </NavDropdown>
-                        {/* EN PROCESO */}
-                        <NavDropdown title="Comunidad" id="navbarScrollingDropdown">
-                            <Link to='/comunidad'>
-                                <NavDropdown.Item as='span' className='dropdown-item'>Ver viajeros</NavDropdown.Item>
-                            </Link>
-                            <Link to='/perfil'>
-                                <NavDropdown.Item as='span' className='dropdown-item'>Mi perfil</NavDropdown.Item>
-                            </Link>
-                        </NavDropdown>
+
+                    </Nav>
+                    <Nav>
+                        {user && <Link to='/comunidad'><Nav.Link as="span">Comunidad 360</Nav.Link></Link>}
                     </Nav>
                     <Nav className="ms-auto">
                         {user ? <> <Link><Nav.Link as="span" onClick={logout}>Cerrar sesión</Nav.Link></Link>

@@ -7,6 +7,7 @@ const PrivateRoute = () => {
 
     const { user, isLoading } = useContext(AuthContext)
 
+
     if (isLoading) {
         return <Loader />
     }

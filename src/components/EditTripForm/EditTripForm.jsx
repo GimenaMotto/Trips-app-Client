@@ -30,20 +30,8 @@ const EditTripForm = ({ fireFinalActions }) => {
             .then(({ data }) => {
                 console.log(data)
                 let { title, description, startDate, endDate, budget, destination } = data
-                // if (!title) { title = '' }
-                // if (!description) { description = '' }
-                // if (!budget) { budget = '' }
-                // if (!destination) { destination = '' }
-                // if (!startDate) { startDate = '' }
-
                 const formatedStartDate = formatedDate(startDate)
                 const formatedEndDate = formatedDate(endDate)
-
-                // hacer en utils una función para las fechas  cuando terminemos el crud o pasar en lugar de formatedDate '',
-                // console.log(new Date(startDate).toLocaleDateString())
-                // const formatedDate = `${new Date(startDate).getFullYear()}-0${new Date(startDate).getMonth() + 1}-0${new Date(startDate).getDate()}`
-                // console.log(formatedDate)
-
                 setNewData({ title, description, startDate: formatedStartDate, endDate: formatedEndDate, images: [], budget, destination })
             })
             .catch(err => console.log(err))

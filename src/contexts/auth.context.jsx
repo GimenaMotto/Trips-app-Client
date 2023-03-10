@@ -4,6 +4,7 @@ import authService from './../services/auth.services'
 
 const AuthContext = createContext()
 
+
 function AuthProviderWrapper(props) {
 
     const [user, setUser] = useState(null)
@@ -21,14 +22,16 @@ function AuthProviderWrapper(props) {
                     setIsLoading(false)
                 })
                 .catch(err => logout())
-        }
+        } else logout()
     }
 
     const logout = () => {
         localStorage.removeItem('authToken')
         setUser(null)
         setIsLoading(false)
+
     }
+
 
     useEffect(() => {
         authenticateUser()
