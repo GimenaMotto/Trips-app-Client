@@ -2,14 +2,13 @@ import './TripsPage.css'
 import TripsList from "../../components/TripsList/TripsList"
 import { Container, Row, Col } from "react-bootstrap"
 import tripsService from "../../services/trips.service"
-import { useContext, useEffect, useState } from "react"
-import { AuthContext } from "../../contexts/auth.context"
-// import { AuthContext } from "../../contexts/auth.context"
+import { useEffect, useState } from "react"
+
 
 const TripPage = () => {
 
     const [trips, setTrips] = useState([])
-    // const { user } = useContext(AuthContext)
+
 
     useEffect(() => {
         loadTrips()
