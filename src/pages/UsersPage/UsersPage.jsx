@@ -26,6 +26,7 @@ const UsersPage = () => {
             <Container className="UsersPage">
                 <Row>
                     <Col >
+                        <hr />
                         <h3>Comunidad usuarios de 360</h3>
                         <hr />
                         <UsersList users={users} />
