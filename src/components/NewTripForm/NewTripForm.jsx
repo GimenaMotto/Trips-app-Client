@@ -5,11 +5,14 @@ import { Form, Row, Col, Button } from "react-bootstrap"
 import uploadServices from '../../services/upload.services'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
+import FormError from '../FormError/FormError'
+import { MessageContext } from '../../contexts/message.context'
+
 
 const NewTripForm = ({ fireFinalActions }) => {
 
     const { user } = useContext(AuthContext)
-    console.log(user)
+
     const [tripData, setTripData] = useState({
         title: '',
         description: '',
@@ -19,7 +22,11 @@ const NewTripForm = ({ fireFinalActions }) => {
         budget: '',
         destination: ''
     })
+
+    const { emitMessage } = useContext(MessageContext)
+
     const navigate = useNavigate()
+
     const handleInputChange = e => {
         const { value, name } = e.target
         setTripData({ ...tripData, [name]: value })
@@ -31,13 +38,18 @@ const NewTripForm = ({ fireFinalActions }) => {
         tripsService
             .saveTrip(tripData)
             .then(({ data }) => {
+                emitMessage('Viaje creado')
                 fireFinalActions()
                 navigate('/viajes')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                setErrors(err.response.data.errorMessages)
+            })
     }
 
     const [loadingImage, setLoadingImage] = useState()
+
+    const [errors, setErrors] = useState([])
 
     const handleFileUpload = e => {
 
@@ -49,11 +61,11 @@ const NewTripForm = ({ fireFinalActions }) => {
         }
 
 
-
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                setTripData({ ...tripData, images: res.data.cloudinary_url })
+                console.log(res)
+                setTripData({ ...tripData, images: res.data })
                 setLoadingImage(false)
             })
             .catch(err => {
@@ -114,6 +126,9 @@ const NewTripForm = ({ fireFinalActions }) => {
                     <Form.Label>Descripción:</Form.Label>
                     <Form.Control type="textarea" rows={2} name="description" value={tripData.description} onChange={handleInputChange} />
                 </Form.Group>
+
+                {errors.length > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
+
                 <div className="d-grid mb-5">
                     <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear viaje'}</Button>
                 </div>

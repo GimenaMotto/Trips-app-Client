@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap"
 import authService from "../../services/auth.services"
 import { AuthContext } from "../../contexts/auth.context"
 import { useNavigate } from 'react-router-dom'
+import { MessageContext } from "../../contexts/message.context"
 
 
 const LoginForm = () => {
@@ -11,7 +12,11 @@ const LoginForm = () => {
         email: '',
         password: ''
     })
+
     const navigate = useNavigate()
+
+    const { emitMessage } = useContext(MessageContext)
+
     const { authenticateUser, user } = useContext(AuthContext)
 
     const handleInputChange = e => {
@@ -29,8 +34,9 @@ const LoginForm = () => {
                 localStorage.setItem('authToken', data.authToken)
                 navigate('/')
                 authenticateUser()
+                emitMessage('Bienvenid@ viajer@')
             })
-            .catch(err => console.log(err))
+            .catch(err => emitMessage('Datos incorrectos'))
     }
 
     return (

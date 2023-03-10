@@ -4,6 +4,7 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import authService from '../../services/auth.services'
 import { useNavigate } from 'react-router-dom'
 import uploadServices from '../../services/upload.services'
+import FormError from '../FormError/FormError'
 
 
 const SignupForm = () => {
@@ -18,6 +19,11 @@ const SignupForm = () => {
         gender: '',
         age: ''
     })
+
+    const [loadingImage, setLoadingImage] = useState()
+
+    const [errors, setErrors] = useState([])
+
 
     const navigate = useNavigate()
 
@@ -38,10 +44,11 @@ const SignupForm = () => {
         authService
             .signup(signupData)
             .then(() => navigate('/iniciar-sesion'))
-            .catch(err => console.log(err))
+            .catch(err => {
+                setErrors(err.response.data.errorMessages)
+            })
     }
 
-    const [loadingImage, setLoadingImage] = useState()
 
     const handleFileUpload = e => {
 
@@ -53,7 +60,7 @@ const SignupForm = () => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                setSignupData({ ...signupData, avatar: res.data.cloudinary_url })
+                setSignupData({ ...signupData, avatar: res.data[0] })
                 setLoadingImage(false)
             })
             .catch(err => {
@@ -129,8 +136,7 @@ const SignupForm = () => {
                 <Form.Control as="textarea" rows={2} value={signupData.description} onChange={handleInputChange} name="description" />
             </Form.Group>
 
-
-
+            {errors.length > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
 
             <div className="d-grid mb-5">
                 <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Registrarme'}</Button>
