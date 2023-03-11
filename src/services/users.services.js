@@ -12,6 +12,10 @@ class UsersService {
         return this.api.get('/getAllUsers')
     }
 
+    getOneUser(user_id) {
+        return this.api.get(`/getOneUser/${user_id}`)
+    }
+
 
 }
 

@@ -5,8 +5,8 @@ import { Card, ListGroup } from 'react-bootstrap'
 const UserCard = ({ username, avatar, description, age, gender, _id }) => {
 
     return (
-        <Link to={`/mi-perfil/${_id}`}>
-            <Card style={{ width: '18rem' }} className="mb-4">
+        <Link to={`/perfil/${_id}`}>
+            <Card style={{ width: '18rem' }} className="mb-4 Usercard">
 
                 < Card.Body >
 

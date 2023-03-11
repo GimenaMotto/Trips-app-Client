@@ -23,13 +23,13 @@ a:active {
     text-decoration: none;
 }
 
-.card-img-top {
+.Usercard .card-img-top {
     object-fit: cover;
     height: 15rem;
     width: 15rem;
 }
 
-.card {
+.Usercard {
     display: flex;
     justify-content: center;
     align-items: center;

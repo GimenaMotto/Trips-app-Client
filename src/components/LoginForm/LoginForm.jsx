@@ -4,6 +4,7 @@ import authService from "../../services/auth.services"
 import { AuthContext } from "../../contexts/auth.context"
 import { useNavigate } from 'react-router-dom'
 import { MessageContext } from "../../contexts/message.context"
+import FormError from '../FormError/FormError'
 
 
 const LoginForm = () => {
@@ -16,6 +17,8 @@ const LoginForm = () => {
     const navigate = useNavigate()
 
     const { emitMessage } = useContext(MessageContext)
+
+    const [errors, setErrors] = useState([])
 
     const { authenticateUser, user } = useContext(AuthContext)
 
@@ -36,7 +39,7 @@ const LoginForm = () => {
                 authenticateUser()
                 emitMessage('Bienvenid@ viajer@')
             })
-            .catch(err => emitMessage('Datos incorrectos'))
+            .catch(err => setErrors(err.response.data.message))
     }
 
     return (
@@ -52,6 +55,8 @@ const LoginForm = () => {
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control type="password" value={loginData.password} onChange={handleInputChange} name="password" />
             </Form.Group>
+
+            {errors.length > 0 && <FormError>{errors}</FormError>}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit">Acceder</Button>

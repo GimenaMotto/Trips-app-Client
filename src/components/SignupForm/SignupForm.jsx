@@ -98,10 +98,10 @@ const SignupForm = () => {
                     <Form.Group>
                         <Form.Label>Género: </Form.Label>
                         <Form.Select className="mb-3" controlId="gender" name="gender" onChange={handleInputChange}>
-                            <option value="no definido">No definido</option>
-                            <option value="mujer">Mujer</option>
-                            <option value="hombre">Hombre</option>
-                            <option value="no binario">No binario</option>
+                            <option value="No definido">No definido</option>
+                            <option value="Mujer">Mujer</option>
+                            <option value="Hombre">Hombre</option>
+                            <option value="No binario">No binario</option>
                         </Form.Select>
                     </Form.Group>
 
@@ -127,6 +127,10 @@ const SignupForm = () => {
                     <option value='Playa'>Playa</option>
                     <option value='Montaña'>Montaña</option>
                     <option value='Arte'>Arte</option>
+                    <option value='Deporte'>Deporte</option>
+                    <option value='Relax'>Relax</option>
+                    <option value='Aventura'>Aventura</option>
+                    <option value='Gastronomia'>Gastronomia</option>
                     <option value='Cultura'>Cultura</option>
                 </Form.Select>
             </Form.Group>
