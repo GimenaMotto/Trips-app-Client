@@ -11,6 +11,7 @@ import { AuthContext } from '../../contexts/auth.context'
 const CardTripDetails = ({ trip, loadTripData }) => {
 
     const { user } = useContext(AuthContext)
+    console.log(user)
     const { trip_id } = useParams()
     const navigate = useNavigate()
 

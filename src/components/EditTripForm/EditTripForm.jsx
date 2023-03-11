@@ -23,13 +23,13 @@ const EditTripForm = ({ fireFinalActions }) => {
         tripsService
             .getOneTrip(trip_id)
             .then(({ data }) => {
-                console.log(data)
+                console.log('la data==>', data)
                 let { title, description, startDate, endDate, budget, destination, images } = data
                 const formatedStartDate = formatedDate(startDate)
                 const formatedEndDate = formatedDate(endDate)
 
                 setNewData({ title, description, startDate: formatedStartDate, endDate: formatedEndDate, images: [], budget, destination })
-                console.log(newData)
+                // console.log('la new data=>', newData)
             })
             .catch(err => console.log(err))
     }
