@@ -10,7 +10,7 @@ const CarouselTripDetails = ({ trip }) => {
                     {trip.images && (
                         <Carousel className="CarouselTripsDetails" indicators={true}>
                             {trip.images.map((image, index) => (
-                                <Carousel.Item key={index} interval={1000}>
+                                <Carousel.Item key={index} interval={2000}>
                                     <img
                                         className="d-block w-100 Img-carousel"
                                         src={image}

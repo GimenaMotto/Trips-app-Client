@@ -6,18 +6,14 @@ import { useEffect, useState, useContext } from "react"
 import NewTripForm from '../../components/NewTripForm/NewTripForm'
 import { ThemeContext } from '../../contexts/theme.context'
 
-
 const TripPage = () => {
-
     const [showModal, setShowModal] = useState(false)
     const [trips, setTrips] = useState([])
     const { themeValue } = useContext(ThemeContext)
     const themePageStyle = themeValue === 'dark' ? 'light' : 'dark'
-
     useEffect(() => {
         loadTrips()
     }, [])
-
     const loadTrips = () => {
         tripsService
             .getTrips()
@@ -44,7 +40,6 @@ const TripPage = () => {
                 </Row>
                 <TripsList trips={trips} />
             </Container>
-
             <Modal className="Modal-newTrip" size="lg" show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton> <Modal.Title className="Modal-title-newTrip">Nuevo Viaje</Modal.Title></Modal.Header>
                 <Modal.Body>
@@ -54,5 +49,4 @@ const TripPage = () => {
         </>
     )
 }
-
 export default TripPage

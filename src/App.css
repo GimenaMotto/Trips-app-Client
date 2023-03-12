@@ -36,3 +36,14 @@ a {
 .App.dark .CardTripDetails .viajerxs {
   color: #f8f9fa;
 }
+
+.App.dark .Usercard {
+  background-color: #212529;
+  color: #f8f9fa;
+  border-color: gray;
+}
+
+.App.dark .Usercard .background-group {
+  background-color: #212529;
+  border-color: gray;
+}
