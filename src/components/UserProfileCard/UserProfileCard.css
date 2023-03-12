@@ -9,3 +9,17 @@
 .CarouselUserDetails {
     margin-top: 30px;
 }
+
+.cardBlack {
+    height: '200px';
+    background-color: black;
+}
+
+.columnCard {
+    width: '150px'
+}
+
+.imageCard {
+
+    width: '150px';
+}

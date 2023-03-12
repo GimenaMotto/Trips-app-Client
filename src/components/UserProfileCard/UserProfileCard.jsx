@@ -27,10 +27,10 @@ const UserProfileCard = (props) => {
 
         <div>
             <MDBCard>
-                <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: '#000', height: '200px' }}>
-                    <div className="ms-4 mt-5 d-flex flex-column" style={{ width: '150px' }}>
+                <div className="rounded-top text-white d-flex flex-row cardBlack">
+                    <div className="ms-4 mt-5 d-flex flex-column columnCard">
                         <MDBCardImage src={user.avatar}
-                            alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }} />
+                            alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail imageCard" fluid style={{ width: '150px', zIndex: '1' }} />
                     </div>
                     <div className="ms-3" style={{ marginTop: '130px' }}>
                         <MDBTypography tag="h5">{user.username}</MDBTypography>
@@ -44,7 +44,7 @@ const UserProfileCard = (props) => {
                 </div>
                 <MDBCardBody className="text-black p-4">
                     <div className="mb-5">
-                        <p className="lead fw-normal mb-1">About {user.username}</p>
+                        <p className="lead fw-normal mb-1">Sobre {user.username}</p>
                         <div className="p-4" style={{ backgroundColor: '#f8f9fa' }}>
                             <MDBCardText className="font-italic mb-1">{user.description}</MDBCardText>
                             <MDBCardText className="font-italic mb-1">Intereses: {user.interests}</MDBCardText>

@@ -11,7 +11,6 @@ import { AuthContext } from '../../contexts/auth.context'
 const CardTripDetails = ({ trip, loadTripData }) => {
 
     const { user } = useContext(AuthContext)
-    console.log(user)
     const { trip_id } = useParams()
     const navigate = useNavigate()
 
@@ -46,7 +45,6 @@ const CardTripDetails = ({ trip, loadTripData }) => {
         tripsService
             .joinToTrip(trip_id, tripData)
             .then(({ data }) => {
-                // console.log("ESTO ME LLEGA al sumar al viaje ==>", data)
                 const { travellers } = data
                 setNewData({ travellers })
                 loadTripData()
@@ -59,9 +57,9 @@ const CardTripDetails = ({ trip, loadTripData }) => {
         tripsService
             .leaveTrip(trip_id, tripData)
             .then(({ data }) => {
-                // console.log("ASI ME LLEGA AL DEJAR EL VIAJE", data)
                 const { ...travellers } = data
                 setNewData({ travellers })
+                loadTripData()
 
             })
     }

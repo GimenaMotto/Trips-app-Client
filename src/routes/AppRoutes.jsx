@@ -9,7 +9,6 @@ import EditTripPage from '../pages/EditTripPage/EditTripPage'
 import PrivateRoute from './PrivateRoute'
 import UsersPage from '../pages/UsersPage/UsersPage'
 import UsersProfilePage from '../pages/UserProfilePage/UserProfilePage'
-import UserProfileModal from '../components/UserProfileModal/UserProfileModal'
 
 
 const AppRoutes = () => {

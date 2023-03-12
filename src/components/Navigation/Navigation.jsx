@@ -9,6 +9,7 @@ import { AuthContext } from '../../contexts/auth.context'
 const Navigation = () => {
 
     const { user, logout } = useContext(AuthContext)
+
     return (
         <Navbar className='NavBar-custom' bg="dark" variant="dark" expand="lg">
             <Container>
@@ -51,6 +52,7 @@ const Navigation = () => {
                         }
 
                         {user && <Navbar.Text>Bienvenidx {user.username} | </Navbar.Text>}
+
                         <Nav />
                     </Nav>
                 </Navbar.Collapse>

@@ -123,15 +123,17 @@ const SignupForm = () => {
             <Form.Group className="mb-3">
                 <Form.Label>Intereses: </Form.Label>
                 <Form.Select className='FormSelect' id="interests" size={2} multiple value={signupData.interests} onChange={handleInputChange} name="interests">
-                    <option value='Naturaleza'>Naturaleza</option>
-                    <option value='Playa'>Playa</option>
-                    <option value='Montaña'>Montaña</option>
-                    <option value='Arte'>Arte</option>
-                    <option value='Deporte'>Deporte</option>
-                    <option value='Relax'>Relax</option>
-                    <option value='Aventura'>Aventura</option>
-                    <option value='Gastronomia'>Gastronomia</option>
-                    <option value='Cultura'>Cultura</option>
+                    <option value='Naturaleza '>Naturaleza</option>
+                    <option value='Playa '>Playa</option>
+                    <option value='Montaña '>Montaña</option>
+                    <option value='Arte '>Arte</option>
+                    <option value='Deporte '>Deporte</option>
+                    <option value='Relax '>Relax</option>
+                    <option value='Aventura '>Aventura</option>
+                    <option value='Gastronomia '>Gastronomia</option>
+                    <option value='Cultura '>Cultura</option>
+                    <option value='Cine '>Cine</option>
+                    <option value='Lectura '>Lectura</option>
                 </Form.Select>
             </Form.Group>
 
