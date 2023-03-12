@@ -4,6 +4,7 @@ import { Form, Row, Col, Button } from "react-bootstrap"
 import tripsService from '../../services/trips.service'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import uploadServices from '../../services/upload.services'
 
 
 const EditTripForm = ({ fireFinalActions }) => {
@@ -19,14 +20,14 @@ const EditTripForm = ({ fireFinalActions }) => {
         destination: ''
     })
 
-    const { trip_id } = useParams()
 
+    const { trip_id } = useParams()
     useEffect(() => {
         loadData()
     }, [])
 
-    const loadData = () => {
 
+    const loadData = () => {
         tripsService
             .getOneTrip(trip_id)
             .then(({ data }) => {
@@ -37,26 +38,69 @@ const EditTripForm = ({ fireFinalActions }) => {
             })
             .catch(err => console.log(err))
     }
-    const handleInputChange = e => {
 
+    // const handleInputChange = e => {
+    //     const { value, name } = e.target
+    //     setNewData({ ...newData, [name]: value })
+    //         .then(({ data }) => {
+    //             fireFinalActions()
+    //             navigate('/viajes')
+    //         })
+    //         .catch(err => console.log(err))
+    // }
+    // const handleTripSubmit = e => {
+    //     e.preventDefault()
+    //     tripsService
+    //         .editTrip(trip_id, newData)
+    //         .then(({ data }) => {
+    //             fireFinalActions()
+    //             navigate('/viajes')
+    //         })
+    //         .catch(err => console.log(err))
+    // }
+
+
+    const handleInputChange = e => {
         const { value, name } = e.target
         setNewData({ ...newData, [name]: value })
+    }
+
+    const handleTripSubmit = e => {
+        e.preventDefault()
+        tripsService
+            .editTrip(trip_id, newData)
             .then(({ data }) => {
+                setNewData(data)
                 fireFinalActions()
                 navigate('/viajes')
             })
             .catch(err => console.log(err))
     }
-    const handleTripSubmit = e => {
 
-        e.preventDefault()
-        tripsService
-            .editTrip(trip_id, newData)
-            .then(({ data }) => {
-                fireFinalActions()
-                navigate('/viajes')
+
+    const [loadingImage, setLoadingImage] = useState()
+
+    const handleFileUpload = e => {
+
+        setLoadingImage(true)
+
+        const formData = new FormData()
+        for (let key in e.target.files) {
+            formData.append('imageData', e.target.files[key])
+        }
+
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setNewData({ ...newData, images: res.data })
+                setLoadingImage(false)
+
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                setLoadingImage(false)
+            })
     }
 
 
@@ -72,7 +116,7 @@ const EditTripForm = ({ fireFinalActions }) => {
                 <Col>
                     <Form.Group className="mb-3">
                         <Form.Label>Imágenes del destino:</Form.Label>
-                        <Form.Control type="file" value={newData.images} name="images" multiple onChange={handleInputChange} />
+                        <Form.Control type="file" name="images" multiple onChange={handleFileUpload} />
                     </Form.Group>
                 </Col>
             </Row>
@@ -110,4 +154,6 @@ const EditTripForm = ({ fireFinalActions }) => {
         </Form>
     )
 }
+
+
 export default EditTripForm

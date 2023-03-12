@@ -67,7 +67,6 @@ const NewTripForm = ({ fireFinalActions }) => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                console.log(res)
                 setTripData({ ...tripData, images: res.data })
                 setLoadingImage(false)
             })
