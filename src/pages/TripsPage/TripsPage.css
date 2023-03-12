@@ -1,7 +1,19 @@
 .TripsPage {
-    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .TripsPage h3 {
     text-align: center;
+}
+
+.Modal-title-newTrip {
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 10px;
+}
+
+.Modal-newTrip {
+    padding: 40px;
 }

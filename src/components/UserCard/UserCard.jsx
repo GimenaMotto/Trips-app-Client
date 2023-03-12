@@ -2,11 +2,11 @@ import './UserCard.css'
 import { Link } from 'react-router-dom'
 import { Card, ListGroup } from 'react-bootstrap'
 
-const UserCard = ({ username, avatar, description, age, gender, _id }) => {
+const UserCard = ({ username, avatar, age, gender, _id }) => {
 
     return (
         <Link to={`/perfil/${_id}`}>
-            <Card style={{ width: '18rem' }} className="mb-4 Usercard">
+            <Card style={{ width: '18rem' }} className="mb-5 Usercard">
 
                 < Card.Body >
 

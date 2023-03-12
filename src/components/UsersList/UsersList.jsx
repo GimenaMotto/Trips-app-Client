@@ -22,7 +22,7 @@ const UsersList = ({ users, onUserClick }) => {
         <>
             <Row>
                 {users.map((user) => (
-                    <Col md={{ span: 3 }} key={user._id}>
+                    <Col className='md-3 mt-3' key={user._id}>
                         <UserCard {...user} onClick={() => handleCardClick(user)} />
                     </Col>
                 ))}

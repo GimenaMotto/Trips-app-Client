@@ -37,11 +37,9 @@ const UsersPage = () => {
     return (
         <>
             <Container className="UsersPage">
-                <Row>
-                    <Col >
-                        <hr />
+                <Row className="justify-content-center align-items-center">
+                    <Col xs={8} md={8} lg={9} className="mt-3">
                         <h3>Comunidad usuarios de 360</h3>
-                        <hr />
                         <UsersList users={users} onUserClick={handleCardClick} />
                     </Col>
                 </Row>
