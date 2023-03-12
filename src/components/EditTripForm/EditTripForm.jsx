@@ -34,6 +34,7 @@ const EditTripForm = ({ fireFinalActions }) => {
                 const formatedStartDate = formatedDate(startDate)
                 const formatedEndDate = formatedDate(endDate)
                 setNewData({ title, description, startDate: formatedStartDate, endDate: formatedEndDate, images: [], budget, destination })
+                console.log(data)
             })
             .catch(err => console.log(err))
     }

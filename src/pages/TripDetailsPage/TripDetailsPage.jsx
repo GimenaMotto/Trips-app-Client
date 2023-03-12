@@ -1,17 +1,19 @@
 import './TripDetailsPage.css'
-import { useEffect, useState } from "react"
-import { Container, Row, Col } from "react-bootstrap"
+import { useEffect, useState, useContext } from "react"
+import { Container, Row, Col, Button } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import tripsService from '../../services/trips.service'
 import CarouselTripDetails from '../../components/CarouselTripDetails/CarouselTripDetails'
 import CardTripDetails from '../../components/CardTripDetails/CardTripDetails'
 import { Link } from 'react-router-dom'
+import { ThemeContext } from '../../contexts/theme.context'
 
 
 const TripDetailsPage = () => {
 
+    const { themeValue } = useContext(ThemeContext)
+    const detailsStyle = themeValue === 'dark' ? 'light' : 'dark'
     const [trip, setTrip] = useState({})
-
     const { trip_id } = useParams()
 
     useEffect(() => {
@@ -41,7 +43,8 @@ const TripDetailsPage = () => {
                 <Col md={{ span: 6, offset: 3 }} className="mb-3">
                     <CardTripDetails trip={trip} loadTripData={loadTripData} />
                     <div className="d-flex justify-content-between align-items-center mb-4">
-                        <Link to="javascript:history.back()" className="btn btn-outline-dark">Volver</Link>
+                        <Link to="javascript:history.back()"> <Button variant={detailsStyle} className='outline' as="span">Volver</Button></Link>
+
                     </div>
                 </Col>
             </Row>

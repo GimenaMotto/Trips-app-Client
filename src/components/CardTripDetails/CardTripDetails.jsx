@@ -102,16 +102,21 @@ const CardTripDetails = ({ trip, loadTripData }) => {
 
                     <ListGroupItem className="m-2 mt-2 background-group">
                         <Card.Subtitle>  <span className="viajerxs"> Viajerxs: </span></Card.Subtitle>
+
                         <div className="d-flex justify-content">
                             {trip.travellers?.map((elm, i) => (
-                                <Figure key={i} className="figure m-2">
-                                    <Figure.Image className="rounded-circle img-fluid traveller-avatar" src={elm.avatar} alt={elm.username} />
-                                    <Figure.Caption >
-                                        <span className="cardDetails">{elm.username}</span>
-                                    </Figure.Caption>
-                                </Figure>
+                                <Link to={`/perfil/${elm._id}`}>
+                                    <Figure key={i} className="figure m-2">
+                                        <Figure.Image className="rounded-circle img-fluid traveller-avatar" src={elm.avatar} alt={elm.username} />
+                                        <Figure.Caption >
+                                            <span className="cardDetails">{elm.username}</span>
+                                        </Figure.Caption>
+
+                                    </Figure>
+                                </Link>
                             ))}
                         </div>
+
                     </ListGroupItem>
                 </ListGroup >
                 <Card.Text className="m-3 ml-2 mr-2">

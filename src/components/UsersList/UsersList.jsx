@@ -10,7 +10,7 @@ const UsersList = ({ users }) => {
             {
                 users.map(elm => {
                     return (
-                        <Col md={{ span: 3 }} key={elm._id}>
+                        <Col className='md-3 mt-3' key={elm._id}>
                             <UserCard {...elm} />
                         </Col>
                     )

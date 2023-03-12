@@ -14,8 +14,6 @@ const TripCard = ({ images, title, startDate, endDate, _id }) => {
 
                     <Card.Img variant="top" src={images[0]} />
                     <Card.Title className={`m-3`}>{title}</Card.Title>
-
-
                     <Card.Text className="m-3">Partida: {new Date(startDate).toLocaleDateString()}</Card.Text>
                     <Card.Text className="m-3">Regreso: {new Date(endDate).toLocaleDateString()}</Card.Text>
                 </Card.Body >
