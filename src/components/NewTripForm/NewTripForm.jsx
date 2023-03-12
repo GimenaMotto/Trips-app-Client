@@ -7,11 +7,14 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import FormError from '../FormError/FormError'
 import { MessageContext } from '../../contexts/message.context'
+import { ThemeContext } from '../../contexts/theme.context'
 
 
 const NewTripForm = ({ fireFinalActions }) => {
 
     const { user } = useContext(AuthContext)
+    const { themeValue } = useContext(ThemeContext)
+    const formStyle = themeValue === 'dark' ? 'light' : 'dark'
 
     const [tripData, setTripData] = useState({
         title: '',
@@ -130,7 +133,7 @@ const NewTripForm = ({ fireFinalActions }) => {
                 {errors.length > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
 
                 <div className="d-grid mb-5">
-                    <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear viaje'}</Button>
+                    <Button variant={formStyle} type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear viaje'}</Button>
                 </div>
             </Form>
         </div >

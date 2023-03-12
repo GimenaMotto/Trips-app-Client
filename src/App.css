@@ -1,3 +1,38 @@
 a {
   text-decoration: none;
 }
+
+.App.dark {
+  background-color: #212529;
+  color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.App.dark .TripCard {
+  background-color: #212529;
+  color: #f8f9fa;
+  border-color: gray;
+}
+
+.App.dark footer {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+.App.dark .CardTripDetails {
+  background-color: #212529;
+  border-color: gray;
+}
+
+.App.dark .CardTripDetails .background-group {
+  background-color: #212529;
+  border-color: gray;
+}
+
+.App.dark .CardTripDetails .organizer {
+  color: #f8f9fa;
+}
+
+.App.dark .CardTripDetails .viajerxs {
+  color: #f8f9fa;
+}

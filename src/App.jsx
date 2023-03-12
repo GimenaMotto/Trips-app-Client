@@ -4,11 +4,15 @@ import Navigation from './components/Navigation/Navigation'
 import Footer from './components/Footer/Footer'
 import AppRoutes from './routes/AppRoutes'
 import UserMessage from './components/UserMessage/UserMessage'
-
+import { useContext } from 'react'
+import { ThemeContext } from './contexts/theme.context'
 
 const App = () => {
+
+  const { themeValue } = useContext(ThemeContext)
+
   return (
-    <div className="App">
+    <div className={`App ${themeValue}`}>
 
       <Navigation />
 
