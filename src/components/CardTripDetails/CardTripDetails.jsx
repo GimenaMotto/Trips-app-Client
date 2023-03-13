@@ -13,6 +13,7 @@ const CardTripDetails = ({ trip, loadTripData }) => {
 
     const { themeValue } = useContext(ThemeContext)
     const { user } = useContext(AuthContext)
+    const [travellersIds, setTravellersIds] = useState([])
     const { trip_id } = useParams()
     const navigate = useNavigate()
     const style = themeValue === 'dark' ? 'light' : 'dark'
@@ -33,6 +34,10 @@ const CardTripDetails = ({ trip, loadTripData }) => {
     useEffect(() => {
         loadData()
     }, [])
+
+    useEffect(() => {
+        getTravellersIds()
+    }, [trip.travellers])
 
     const loadData = () => {
         tripsService
@@ -64,10 +69,12 @@ const CardTripDetails = ({ trip, loadTripData }) => {
                 const { ...travellers } = data
                 setNewData({ travellers })
                 loadTripData()
-
             })
     }
 
+    const getTravellersIds = () => {
+        setTravellersIds(trip.travellers?.map(elm => elm._id))
+    }
 
     return (
         <Card className="CardTripDetails">
@@ -83,57 +90,60 @@ const CardTripDetails = ({ trip, loadTripData }) => {
                         </Card.Subtitle>
                     </ListGroup.Item>
                     <ListGroupItem className="m-2 mt-2 background-group">
+
                         <Card.Subtitle> <span className="mr-2 align-self-center organizer">Organizador/a:</span>
-                            <Figure className="m-0">
-                                <div className="d-flex align-items-center ml-2">
-                                    <Figure.Image
-                                        src={trip.organizer?.avatar}
-                                        roundedCircle
-                                        className="mr-2 rounded-circle img-fluid traveller-avatar"
-                                    /><Figure.Caption className="organizer-name">
-                                        {trip.organizer?.username}
-                                    </Figure.Caption>
-                                </div>
-                            </Figure>
+                            <Link to={`/perfil/${trip.organizer?._id}`}>
+                                <Figure className="m-0">
+                                    <div className="d-flex align-items-center ml-2">
+                                        <Figure.Image
+                                            src={trip.organizer?.avatar}
+                                            roundedCircle
+                                            className="mr-2 rounded-circle img-fluid traveller-avatar"
+                                        /><Figure.Caption className="organizer-name">
+                                            {trip.organizer?.username}
+                                        </Figure.Caption>
+                                    </div>
+                                </Figure>
+                            </Link>
+
                         </Card.Subtitle>
                     </ListGroupItem>
 
-                    <ListGroupItem className="m-2 mt-2 background-group">
-                        <Card.Subtitle>  <span className="viajerxs"> Viajerxs: </span></Card.Subtitle>
-
-                        <div className="d-flex justify-content">
-                            {trip.travellers?.map((elm, i) => (
-                                <Link to={`/perfil/${elm._id}`}>
-                                    <Figure key={i} className="figure m-2">
-                                        <Figure.Image className="rounded-circle img-fluid traveller-avatar" src={elm.avatar} alt={elm.username} />
-                                        <Figure.Caption >
-                                            <span className="cardDetails">{elm.username}</span>
-                                        </Figure.Caption>
-
-                                    </Figure>
-                                </Link>
-                            ))}
-                        </div>
-
-                    </ListGroupItem>
                 </ListGroup >
                 <Card.Text className="m-3 ml-2 mr-2">
-                    <span> Sobre el viaje:</span>  {trip.description}
+                    <span className='viajeDescription'> Sobre el viaje:</span>  {trip.description}
                 </Card.Text>
                 <Card.Text className="m-3 ml-2 mr-2">
-                    <span> Presupuesto:</span>  {trip.budget}
+                    <span className='budget'> Presupuesto:</span>  {trip.budget}
                 </Card.Text>
+
+                <ListGroupItem className="m-4 mt-5 background-group">
+                    <Card.Subtitle>  <span className="viajerxs"> Viajerxs: </span></Card.Subtitle>
+
+                    <div className="d-flex justify-content">
+                        {trip.travellers?.map((elm, i) => (
+                            <Link to={`/perfil/${elm._id}`}>
+                                <Figure key={i} className="figure m-2">
+                                    <Figure.Image className="rounded-circle img-fluid traveller-avatar" src={elm.avatar} alt={elm.username} />
+                                    <Figure.Caption >
+                                        <span className="cardDetails">{elm.username}</span>
+                                    </Figure.Caption>
+
+                                </Figure>
+                            </Link>
+                        ))}
+                    </div>
+
+                </ListGroupItem>
                 <Row>
                     <Col className="m-3 d-flex justify-content-center">
-                        <Link to="">
-                            {/* {trip.travellers?.includes(!user._id) && */}
+                        {travellersIds?.includes(user._id) ? <Link to="">
                             <Button onClick={handleLeaveTrip} variant={style} as="span"> Abandonar viaje</Button>
                         </Link>
-                    </Col>
-                    <Col className="m-3 d-flex justify-content-center">
-                        <Link to="">
-                            <Button variant={style} as="span" onClick={handleJoinTrip}> Sumarse al viaje</Button>
-                        </Link>
+                            :
+                            <Link to="">
+                                <Button variant={style} as="span" onClick={handleJoinTrip}> Sumarse al viaje</Button>
+                            </Link>}
                     </Col>
 
                 </Row>
