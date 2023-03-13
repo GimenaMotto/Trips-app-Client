@@ -9,7 +9,7 @@ const UserCard = ({ username, avatar, age, gender, _id }) => {
             <Card style={{ width: '18rem' }} className="mb-5 Usercard">
 
                 < Card.Body>
-                    <Card.Img className='rounded-circle' variant="top" src={avatar} />
+                    <Card.Img className='rounded-circle img mov-img' variant="top" src={avatar} />
                     <Card.Title className="m-3">{username}</Card.Title>
                     <ListGroup variant="flush" className="m-3">
                         <ListGroup.Item className="m-2 mt-2 background-group">

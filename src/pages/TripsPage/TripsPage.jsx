@@ -1,16 +1,19 @@
 import './TripsPage.css'
 import TripsList from "../../components/TripsList/TripsList"
-import { Container, Row, Col, Modal, Button } from "react-bootstrap"
+import { Container, Row, Col, Modal, Button, Image } from "react-bootstrap"
 import tripsService from "../../services/trips.service"
 import { useEffect, useState, useContext } from "react"
 import NewTripForm from '../../components/NewTripForm/NewTripForm'
 import { ThemeContext } from '../../contexts/theme.context'
+
 
 const TripPage = () => {
     const [showModal, setShowModal] = useState(false)
     const [trips, setTrips] = useState([])
     const { themeValue } = useContext(ThemeContext)
     const themePageStyle = themeValue === 'dark' ? 'light' : 'dark'
+
+
     useEffect(() => {
         loadTrips()
     }, [])
@@ -40,6 +43,7 @@ const TripPage = () => {
                 </Row>
                 <TripsList trips={trips} />
             </Container>
+
             <Modal className="Modal-newTrip" size="lg" show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton> <Modal.Title className="Modal-title-newTrip">Nuevo Viaje</Modal.Title></Modal.Header>
                 <Modal.Body>

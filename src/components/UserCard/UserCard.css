@@ -36,3 +36,12 @@ a:active {
     flex-direction: column;
     text-align: center;
 }
+
+
+.Usercard .img {
+    transform: scale(0.7)
+}
+
+.Usercard:hover .mov-img {
+    transform: scale(0.8);
+}

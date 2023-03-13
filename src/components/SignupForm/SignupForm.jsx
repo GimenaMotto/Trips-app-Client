@@ -1,13 +1,19 @@
 import './SignupForm.css'
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import authService from '../../services/auth.services'
 import { useNavigate } from 'react-router-dom'
 import uploadServices from '../../services/upload.services'
 import FormError from '../FormError/FormError'
-
+import { ThemeContext } from '../../contexts/theme.context'
 
 const SignupForm = () => {
+
+    const [loadingImage, setLoadingImage] = useState()
+    const { themeValue } = useContext(ThemeContext)
+    const formStyle = themeValue === 'dark' ? 'light' : 'dark'
+    const [errors, setErrors] = useState([])
+    const navigate = useNavigate()
 
     const [signupData, setSignupData] = useState({
         username: '',
@@ -19,13 +25,6 @@ const SignupForm = () => {
         gender: '',
         age: ''
     })
-
-    const [loadingImage, setLoadingImage] = useState()
-
-    const [errors, setErrors] = useState([])
-
-
-    const navigate = useNavigate()
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -74,13 +73,13 @@ const SignupForm = () => {
 
         <Form onSubmit={handleFormSubmit}>
             <Form.Group className="mb-3" controlId="email">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>Email:</Form.Label>
                 <Form.Control type="email" value={signupData.email} onChange={handleInputChange} name="email" />
             </Form.Group>
             <Row>
                 <Col>
                     <Form.Group className="mb-3" controlId="username">
-                        <Form.Label>Nombre de usuario</Form.Label>
+                        <Form.Label>Nombre de usuario:</Form.Label>
                         <Form.Control type="text" value={signupData.username} onChange={handleInputChange} name="username" />
                     </Form.Group>
                 </Col>
@@ -122,7 +121,7 @@ const SignupForm = () => {
 
             <Form.Group className="mb-3">
                 <Form.Label>Intereses: </Form.Label>
-                <Form.Select className='FormSelect' id="interests" size={2} multiple value={signupData.interests} onChange={handleInputChange} name="interests">
+                <Form.Select className='FormSelect custom-select' id="interests" size={2} multiple value={signupData.interests} onChange={handleInputChange} name="interests">
                     <option value='Naturaleza '>Naturaleza</option>
                     <option value='Playa '>Playa</option>
                     <option value='Montaña '>Montaña</option>
@@ -138,14 +137,18 @@ const SignupForm = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-                <Form.Label>Sobre mi</Form.Label>
+                <Form.Label>Sobre mi:</Form.Label>
                 <Form.Control as="textarea" rows={2} value={signupData.description} onChange={handleInputChange} name="description" />
             </Form.Group>
 
             {errors.length > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
 
-            <div className="d-grid mb-5">
-                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Registrarme'}</Button>
+            <div className="d-grid">
+                <Row>
+                    <Col className="text-center">
+                        <Button className="px-5 mt-3 mb-5" variant={formStyle} type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Registrarme'}</Button>
+                    </Col>
+                </Row>
             </div>
 
         </Form>

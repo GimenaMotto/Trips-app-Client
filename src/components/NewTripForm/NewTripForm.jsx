@@ -131,8 +131,12 @@ const NewTripForm = ({ fireFinalActions }) => {
 
                 {errors.length > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
 
-                <div className="d-grid mb-5">
-                    <Button variant={formStyle} type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear viaje'}</Button>
+                <div className="d-grid">
+                    <Row>
+                        <Col className="text-center">
+                            <Button className="px-5 mt-3" variant={formStyle} type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear viaje'}</Button>
+                        </Col>
+                    </Row>
                 </div>
             </Form>
         </div >

@@ -50,3 +50,7 @@ a:active {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.TripCard:hover {
+    transform: scale(1.05);
+}

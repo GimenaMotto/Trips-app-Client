@@ -59,8 +59,6 @@ const Navigation = () => {
                             </>
                         }
 
-                        {user && <Navbar.Text>Bienvenidx {user.username} | </Navbar.Text>}
-
                         <Nav />
                     </Nav>
                     <Nav>

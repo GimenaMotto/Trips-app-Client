@@ -1,0 +1,6 @@
+.Img-home {
+    width: 100%;
+    min-height: 100vh;
+    object-fit: cover;
+    opacity: 0.8;
+}
