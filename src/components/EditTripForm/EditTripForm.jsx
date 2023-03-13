@@ -31,11 +31,14 @@ const EditTripForm = ({ fireFinalActions }) => {
                 let { title, description, startDate, endDate, budget, destination, images } = data
                 const formatedStartDate = formatedDate(startDate)
                 const formatedEndDate = formatedDate(endDate)
-                setNewData({ title, description, startDate: formatedStartDate, endDate: formatedEndDate, images: [], budget, destination })
-                console.log(data)
+                setNewData({ title, description, startDate: formatedStartDate, endDate: formatedEndDate, images: data.images, budget, destination })
+                // console.log(data)
             })
             .catch(err => console.log(err))
     }
+
+    const currentImages = newData.images
+    console.log('esto es currentImages=>', currentImages)
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -68,8 +71,10 @@ const EditTripForm = ({ fireFinalActions }) => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                setNewData({ ...newData, images: res.data })
+                setNewData({ ...newData, images: currentImages.concat(res.data) })
                 setLoadingImage(false)
+                console.log('esto es res.data=>', res.data)
+                console.log('esto es newData', newData)
 
             })
             .catch(err => {

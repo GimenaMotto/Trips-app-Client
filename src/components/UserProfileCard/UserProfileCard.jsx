@@ -23,68 +23,32 @@ const UserProfileCard = (props) => {
 
     return (
 
-        <Card>
+        <Card className="UserProfile">
             <Card.Body>
-                <Row>
-                    <Col>
-                        <Card.Img src={user.avatar} />
-                    </Col>
-                    <Col>
-                        <Card.Title>{user.username}</Card.Title>
-                        <Card.Subtitle>{user.email}</Card.Subtitle>
-                    </Col>
-                </Row>
+                <ListGroup className="List-group">
+                    <Row className="justify-content">
+                        <Col md={4} className="m-3">
+                            <Card.Img src={user.avatar} className="card-image img-fluid" />
+                        </Col>
+                        <Col md={4} className="m-3">
+                            <Card.Title className="username">{user.username}</Card.Title>
+                            <Card.Subtitle className="email">{user.email}</Card.Subtitle>
+                        </Col>
+                    </Row>
+                </ListGroup>
                 <ListGroup>
                     <ListGroupItem className="m-3">
-                        <Card.Text><span>Sobre {user.username}: </span> {user.description} </Card.Text>
+                        <Card.Subtitle><span>Sobre {user.username}: </span> {user.description} </Card.Subtitle>
                     </ListGroupItem>
-                    <ListGroupItem className="m-1">
-                        <Card.Text><span>Intereses: </span>{user.interests}</Card.Text>
-                    </ListGroupItem>
-                    <ListGroupItem className="m-1">
-                        <Card.Text><span>Género: </span>{user.gender}</Card.Text>
-                    </ListGroupItem>
+                    <Card.Text className="m-2"><span>Género: </span>{user.gender}</Card.Text>
+                    <Card.Text className="m-2"><span>Edad: </span>{user.age}</Card.Text>
+                    <Card.Text className="m-2"><span>Intereses: </span>{user.interests}</Card.Text>
+
                 </ListGroup>
             </Card.Body>
         </Card>
 
-        // <div>
-        //     <Card>
-        //         <div className="rounded-top text-white d-flex flex-row cardBlack">
-        //             <div className="ms-4 mt-5 d-flex flex-column columnCard">
-        //                 <Card.Image src={user.avatar}
-        //                     alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail imageCard" fluid style={{ width: '150px', zIndex: '1' }} />
 
-        //             </div>
-        //             <div className="ms-3" style={{ marginTop: '130px' }}>
-        //                 <Card.Text tag="h5">{user.username}</Card.Text>
-        //                 <Card.Text>{user.email}</Card.Text>
-        //             </div>
-        //         </div>
-        //         <div className="p-4 text-black" style={{ backgroundColor: '#f8f9fa' }}>
-        //             <Button outline color="dark" style={{ height: '36px', overflow: 'visible' }}>
-        //                 Edit profile
-        //             </Button>
-        //             <div className="d-flex justify-content-end text-center py-1">
-
-        //             </div>
-        //         </div>
-        //         <Card.Body className="text-black p-4">
-        //             <div className="mb-5">
-        //                 <p className="lead fw-normal mb-1">Sobre {user.username}:</p>
-        //                 <div className="p-4" style={{ backgroundColor: '#f8f9fa' }}>
-        //                     <hr />
-        //                     <Card.Text className="font-italic mb-1">{user.description}</Card.Text>
-        //                     <hr />
-        //                     <Card.Text className="font-italic mb-1">Intereses: {user.interests}</Card.Text>
-        //                     <hr />
-        //                     <Card.Text className="font-italic mb-1">Género: {user.gender}</Card.Text>
-        //                 </div>
-        //             </div>
-        //         </Card.Body>
-        //     </Card>
-
-        // </div>
     )
 }
 
