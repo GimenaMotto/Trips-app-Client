@@ -3,7 +3,6 @@ import { Container, Row, Col } from "react-bootstrap"
 import { useNavigate } from 'react-router-dom'
 import EditTripForm from '../../components/EditTripForm/EditTripForm'
 
-
 const EditTripPage = () => {
 
     const navigate = useNavigate()

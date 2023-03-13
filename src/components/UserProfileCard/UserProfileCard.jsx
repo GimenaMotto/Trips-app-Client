@@ -4,12 +4,9 @@ import { useParams } from "react-router-dom"
 import usersService from '../../services/users.services'
 import { MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography } from 'mdb-react-ui-kit'
 
-
-
 const UserProfileCard = (props) => {
 
     const [user, setUser] = useState({})
-
     const { user_id } = useParams()
 
     useEffect(() => {

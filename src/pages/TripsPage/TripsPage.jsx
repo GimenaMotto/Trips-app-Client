@@ -1,7 +1,7 @@
 import './TripsPage.css'
 import TripsList from "../../components/TripsList/TripsList"
 import { Container, Row, Col, Modal, Button, Image } from "react-bootstrap"
-import tripsService from "../../services/trips.service"
+import tripsService from "../../services/trips.services"
 import { useEffect, useState, useContext } from "react"
 import NewTripForm from '../../components/NewTripForm/NewTripForm'
 import { ThemeContext } from '../../contexts/theme.context'
@@ -17,6 +17,7 @@ const TripPage = () => {
     useEffect(() => {
         loadTrips()
     }, [])
+
     const loadTrips = () => {
         tripsService
             .getTrips()
@@ -24,6 +25,7 @@ const TripPage = () => {
                 setTrips(data)
             })
     }
+
     const fireFinalActions = () => {
         setShowModal(false)
         loadTrips()

@@ -1,6 +1,6 @@
 import './NewTripForm.css'
 import { useState, useContext } from 'react'
-import tripsService from '../../services/trips.service'
+import tripsService from '../../services/trips.services'
 import { Form, Row, Col, Button } from "react-bootstrap"
 import uploadServices from '../../services/upload.services'
 import { useNavigate } from 'react-router-dom'
@@ -62,7 +62,6 @@ const NewTripForm = ({ fireFinalActions }) => {
         for (let key in e.target.files) {
             formData.append('imageData', e.target.files[key])
         }
-
 
         uploadServices
             .uploadimage(formData)

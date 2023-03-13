@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import NewTripForm from '../../components/NewTripForm/NewTripForm'
 
-
 const NewTripPage = () => {
 
     const navigate = useNavigate()
@@ -23,10 +22,7 @@ const NewTripPage = () => {
                     <NewTripForm fireFinalActions={fireFinalActions} />
                 </Col>
             </Row>
-
-
         </Container>
-
     )
 }
 

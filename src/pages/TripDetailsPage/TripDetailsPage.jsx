@@ -2,12 +2,11 @@ import './TripDetailsPage.css'
 import { useEffect, useState, useContext } from "react"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { useParams } from "react-router-dom"
-import tripsService from '../../services/trips.service'
+import tripsService from '../../services/trips.services'
 import CarouselTripDetails from '../../components/CarouselTripDetails/CarouselTripDetails'
 import CardTripDetails from '../../components/CardTripDetails/CardTripDetails'
 import { Link } from 'react-router-dom'
 import { ThemeContext } from '../../contexts/theme.context'
-
 
 const TripDetailsPage = () => {
 

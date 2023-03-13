@@ -5,15 +5,13 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import { ThemeContext } from '../../contexts/theme.context'
 
-
-
 const Navigation = () => {
 
     const { user, logout } = useContext(AuthContext)
     const { themeValue, switchTheme } = useContext(ThemeContext)
-
     const navbarStyle = themeValue === 'dark' ? 'light' : 'dark'
     const themeText = themeValue === 'light' ? 'Tema oscuro' : 'Tema claro'
+
 
     return (
         <Navbar className='NavBar-custom' bg={navbarStyle} variant={navbarStyle} expand="lg">

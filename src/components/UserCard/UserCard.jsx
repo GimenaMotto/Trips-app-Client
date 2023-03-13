@@ -7,7 +7,6 @@ const UserCard = ({ username, avatar, age, gender, _id }) => {
     return (
         <Link to={`/perfil/${_id}`}>
             <Card style={{ width: '18rem' }} className="mb-5 Usercard">
-
                 < Card.Body>
                     <Card.Img className='rounded-circle img mov-img' variant="top" src={avatar} />
                     <Card.Title className="m-3">{username}</Card.Title>

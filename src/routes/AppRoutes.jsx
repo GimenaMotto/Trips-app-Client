@@ -29,8 +29,6 @@ const AppRoutes = () => {
                 <Route path='/editar-perfil/:user_id' element={<p>Page editar perfil-comp form editar perfil</p>} />
             </Route>
 
-
-
             <Route path='*' element={<p>404</p>} />
 
         </Routes>

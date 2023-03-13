@@ -1,7 +1,6 @@
 import './CarouselTripDetails.css'
 import { Row, Col, Carousel, Container } from "react-bootstrap"
 
-
 const CarouselTripDetails = ({ trip }) => {
     return (
         <Container>

@@ -2,7 +2,7 @@ import './CardTripDetails.css'
 import { Card, Button, Row, Col, ListGroup, ListGroupItem, Figure } from "react-bootstrap"
 import { Link, } from "react-router-dom"
 import { useParams } from 'react-router-dom'
-import tripsService from '../../services/trips.service'
+import tripsService from '../../services/trips.services'
 import { useNavigate } from 'react-router-dom'
 import { useState, useContext, useEffect } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
@@ -25,6 +25,7 @@ const CardTripDetails = ({ trip, loadTripData }) => {
             })
             .catch(err => console.log(err))
     }
+
     const [tripData, setNewData] = useState({
         travellers: ''
     })
@@ -67,9 +68,6 @@ const CardTripDetails = ({ trip, loadTripData }) => {
             })
     }
 
-    // useEffect(() => {
-    //     console.log("Los travellers!!! ===>", tripData)
-    // }, [tripData])
 
     return (
         <Card className="CardTripDetails">
@@ -128,7 +126,7 @@ const CardTripDetails = ({ trip, loadTripData }) => {
                 <Row>
                     <Col className="m-3 d-flex justify-content-center">
                         <Link to="">
-                            {/* trip.travellers?.includes(user._id) && */}
+                            {/* {trip.travellers?.includes(!user._id) && */}
                             <Button onClick={handleLeaveTrip} variant={style} as="span"> Abandonar viaje</Button>
                         </Link>
                     </Col>

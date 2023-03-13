@@ -1,6 +1,7 @@
 import { MDBCol, MDBContainer, MDBRow } from 'mdb-react-ui-kit'
 import UserProfileCard from '../../components/UserProfileCard/UserProfileCard'
 import { Link } from 'react-router-dom'
+
 const UsersProfilePage = () => {
 
     return (

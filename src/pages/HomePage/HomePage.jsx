@@ -1,7 +1,6 @@
 import './HomePage.css'
-import { Figure, Image } from 'react-bootstrap'
+import { Image } from 'react-bootstrap'
 import homepage from '../../assets/homepage.jpg'
-import homepage1 from '../../assets/home-page.jpg'
 
 
 const HomePage = () => {

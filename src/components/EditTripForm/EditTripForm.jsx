@@ -1,11 +1,10 @@
 import formatedDate from '../../utils/formatDate'
 import './EditTripForm.css'
 import { Form, Row, Col, Button } from "react-bootstrap"
-import tripsService from '../../services/trips.service'
+import tripsService from '../../services/trips.services'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import uploadServices from '../../services/upload.services'
-
 
 const EditTripForm = ({ fireFinalActions }) => {
 
@@ -20,12 +19,10 @@ const EditTripForm = ({ fireFinalActions }) => {
         destination: ''
     })
 
-
     const { trip_id } = useParams()
     useEffect(() => {
         loadData()
     }, [])
-
 
     const loadData = () => {
         tripsService
@@ -39,27 +36,6 @@ const EditTripForm = ({ fireFinalActions }) => {
             })
             .catch(err => console.log(err))
     }
-
-    // const handleInputChange = e => {
-    //     const { value, name } = e.target
-    //     setNewData({ ...newData, [name]: value })
-    //         .then(({ data }) => {
-    //             fireFinalActions()
-    //             navigate('/viajes')
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-    // const handleTripSubmit = e => {
-    //     e.preventDefault()
-    //     tripsService
-    //         .editTrip(trip_id, newData)
-    //         .then(({ data }) => {
-    //             fireFinalActions()
-    //             navigate('/viajes')
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -78,7 +54,6 @@ const EditTripForm = ({ fireFinalActions }) => {
             .catch(err => console.log(err))
     }
 
-
     const [loadingImage, setLoadingImage] = useState()
 
     const handleFileUpload = e => {
@@ -89,7 +64,6 @@ const EditTripForm = ({ fireFinalActions }) => {
         for (let key in e.target.files) {
             formData.append('imageData', e.target.files[key])
         }
-
 
         uploadServices
             .uploadimage(formData)
