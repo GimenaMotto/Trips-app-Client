@@ -40,7 +40,7 @@ const Navigation = () => {
                     </Nav>
 
                     <Nav className="ms-auto">
-                        {user && <Link to="/"><Nav.Link as="span">Bienvenidx {user.username}</Nav.Link></Link>}
+                        {user && <Link to={`/perfil/${user._id}`}><Nav.Link as="span">Bienvenidx {user.username}</Nav.Link></Link>}
 
                         {user ? <> <Link><Nav.Link as="span" onClick={logout}>Cerrar sesión</Nav.Link></Link>
                         </>

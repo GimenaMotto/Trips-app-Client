@@ -70,7 +70,6 @@ const NewTripForm = ({ fireFinalActions }) => {
                 setLoadingImage(false)
             })
             .catch(err => {
-                console.log(err)
                 setLoadingImage(false)
             })
     }

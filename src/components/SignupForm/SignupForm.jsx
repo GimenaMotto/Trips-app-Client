@@ -63,7 +63,6 @@ const SignupForm = () => {
                 setLoadingImage(false)
             })
             .catch(err => {
-                console.log(err)
                 setLoadingImage(false)
             })
     }

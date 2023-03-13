@@ -24,6 +24,10 @@ class TripService {
         return this.api.get('/getAllTrips')
     }
 
+    getOrganizer(organizer_id) {
+        return this.api.get(`/organizer/${organizer_id}`)
+    }
+
     getOneTrip(trip_id) {
         return this.api.get(`/getOneTrip/${trip_id}`)
     }
