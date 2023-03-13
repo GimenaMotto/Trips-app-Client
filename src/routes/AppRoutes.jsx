@@ -16,11 +16,11 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/viajes' element={<TripPage />} />
             <Route path='/registro' element={<SignupPage />} />
             <Route path='/iniciar-sesion' element={<LoginPage />} />
 
             <Route element={<PrivateRoute />}>
+                <Route path='/viajes' element={<TripPage />} />
                 <Route path='/detalles/:trip_id' element={<TripDetailsPage />} />
                 <Route path='/crear-viaje' element={<NewTripPage />} />
                 <Route path='/editar-viaje/:trip_id' element={<EditTripPage />} />
