@@ -1,11 +1,10 @@
-import { MDBCol, MDBContainer, MDBRow } from 'mdb-react-ui-kit'
 import UserProfileCard from '../../components/UserProfileCard/UserProfileCard'
 import { Link } from 'react-router-dom'
 import tripsService from '../../services/trips.services'
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import TripCard from '../../components/TripCard/TripCard'
-import { Col, Row } from "react-bootstrap"
+import { Col, Row, Container } from "react-bootstrap"
 
 
 const UsersProfilePage = () => {
@@ -27,9 +26,9 @@ const UsersProfilePage = () => {
     return (
 
         <div className="gradient-custom-2" style={{ backgroundColor: '#9de2ff' }}>
-            <MDBContainer className="py-5 h-100">
-                <MDBRow className="justify-content-center align-items-center h-100">
-                    <MDBCol lg="9" xl="7">
+            <Container className="py-5 h-100">
+                <Row className="justify-content-center align-items-center h-100">
+                    <Col lg="9" xl="7">
                         <UserProfileCard />
                         <Row>
                             {
@@ -45,9 +44,9 @@ const UsersProfilePage = () => {
                         <div className="d-flex justify-content-between align-items-center mb-4">
                             <Link to="javascript:history.back()" className="btn btn-outline-dark">Volver</Link>
                         </div>
-                    </MDBCol>
-                </MDBRow>
-            </MDBContainer>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 }
