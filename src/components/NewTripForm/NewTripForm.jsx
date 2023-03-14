@@ -20,6 +20,7 @@ const NewTripForm = ({ fireFinalActions }) => {
     const [loadingImage, setLoadingImage] = useState()
     const [errors, setErrors] = useState([])
     const [selectedImages, setSelectedImages] = useState([]);
+    const [selected, setSelected] = useState(null)
     const { emitMessage } = useContext(MessageContext)
 
     const [gmapsLoaded, setGmapsLoaded] = useState(false)
@@ -43,10 +44,8 @@ const NewTripForm = ({ fireFinalActions }) => {
     })
 
     useEffect(() => {
-        setTripData({ ...tripData, images: selectedImages })
-    }, [selectedImages])
-
-
+        setTripData({ ...tripData, images: selectedImages, destination: { coordinates: selected, type: "Point" } })
+    }, [selectedImages, selected])
 
     const navigate = useNavigate()
 
@@ -72,7 +71,6 @@ const NewTripForm = ({ fireFinalActions }) => {
 
 
 
-    const [selected, setSelected] = useState(null)
 
     const handleFileUpload = e => {
 
@@ -130,12 +128,12 @@ const NewTripForm = ({ fireFinalActions }) => {
                 </Row>
                 <Row>
                     <Col md={6}>
-                        {/* {gmapsLoaded && <div><AutocompleteMap setSelected={setSelected} value={tripData.destination} onChange={handleInputChange} /></div>} */}
-                        <Form.Group className="mb-3" controlId="destination">
+                        {gmapsLoaded && <div><AutocompleteMap selected={selected} setSelected={setSelected} value={tripData.destination} onChange={handleInputChange} /></div>}
+                        {/* <Form.Group className="mb-3" controlId="destination">
                             <Form.Label>Destino (longitud, latitud):</Form.Label>
                             <Form.Control type="text" name="latitude" value={tripData.destination.latitude} onChange={handleInputChange} />
                             <Form.Control type="text" name="longitude" value={tripData.destination.longitude} onChange={handleInputChange} />
-                        </Form.Group>
+                        </Form.Group> */}
                     </Col>
                 </Row>
                 <Row>

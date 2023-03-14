@@ -2,7 +2,7 @@ import './UserProfileCard.css'
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import usersService from '../../services/users.services'
-import { Card, Button, Row, Col, ListGroup, ListGroupItem, Figure } from "react-bootstrap"
+import { Card, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap"
 
 
 const UserProfileCard = (props) => {
@@ -43,12 +43,9 @@ const UserProfileCard = (props) => {
                     <Card.Text className="m-2"><span>Género: </span>{user.gender}</Card.Text>
                     <Card.Text className="m-2"><span>Edad: </span>{user.age}</Card.Text>
                     <Card.Text className="m-2"><span>Intereses: </span>{user.interests}</Card.Text>
-
                 </ListGroup>
             </Card.Body>
         </Card>
-
-
     )
 }
 

@@ -1,9 +1,9 @@
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import usePlacesAutocomplete, { getGeocode, getLatLng } from 'use-places-autocomplete'
 import { Form, FormGroup, FormControl, ListGroup } from 'react-bootstrap';
 
 
-const AutocompleteMap = ({ setSelected }) => {
+const AutocompleteMap = ({ setSelected, selected }) => {
 
     const [selectedLocation, setSelectedLocation] = useState(null);
     const { ready, value, setValue, suggestions: { status, data }, clearSuggestions } = usePlacesAutocomplete()
@@ -12,7 +12,7 @@ const AutocompleteMap = ({ setSelected }) => {
         clearSuggestions()
         const results = await getGeocode({ address })
         const { lat, lng } = await getLatLng(results[0])
-        setSelected({ lat, lng })
+        setSelected([lat, lng])
     }
 
     return (

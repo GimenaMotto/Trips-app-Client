@@ -3,6 +3,8 @@ import { useMemo, useState, useEffect } from 'react'
 import tripsService from "../../services/trips.services"
 import AutocompleteMap from "../AutocompleteMap/AutocompleteMap"
 import './Map.css'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 
 const Map = () => {
@@ -10,6 +12,12 @@ const Map = () => {
     const [selected, setSelected] = useState(null)
 
     const [trips, setTrips] = useState([])
+
+    const [showDetails, setShowDetails] = useState(false)
+
+    const [selectedTrip, setSelectedTrip] = useState(null)
+
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -24,19 +32,34 @@ const Map = () => {
             })
     }
 
+    const handleClick = (tripID) => {
+        navigate(`/detalles/${tripID}`)
+    }
+
     const destinations = trips.map(elm => elm.destination)
 
 
     return (
         <>
-            {/* <div><AutocompleteMap setSelected={setSelected} /></div> */}
+
             <GoogleMap zoom={2.2} center={{ lat: 40.41, lng: -3.7 }} mapContainerClassName="map-container">
-                {destinations.map(elm => {
-                    return <Marker position={{ lat: elm.coordinates[0], lng: elm.coordinates[1] }} />
+                {trips.map(elm => {
+                    return (
+                        <Marker
+                            title={elm.title}
+                            position={{ lat: elm.destination.coordinates[0], lng: elm.destination.coordinates[1] }}
+                            onClick={() => handleClick(elm._id)}
+                        />
+                    )
                 })}
             </GoogleMap>
         </>
+
+
+
     )
 }
 
 export default Map
+
+
