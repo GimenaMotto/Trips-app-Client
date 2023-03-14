@@ -1,5 +1,5 @@
 import './NewTripPage.css'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Image } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import NewTripForm from '../../components/NewTripForm/NewTripForm'
 
@@ -13,7 +13,7 @@ const NewTripPage = () => {
 
     return (
 
-        <Container className="NewTripPage">
+        <Container className="NewTripPage" >
             <Row>
 
                 <Col md={{ offset: 1, span: 10 }}>
@@ -23,6 +23,8 @@ const NewTripPage = () => {
                 </Col>
             </Row>
         </Container>
+
+
     )
 }
 
