@@ -22,28 +22,36 @@ const UserProfileCard = (props) => {
     }
 
     return (
-
         <Card>
             <Card.Body>
-                <Row>
-                    <Col>
-                        <Card.Img src={user.avatar} />
+                <Row className="justify-content-center">
+                    <Col md={3}>
+                        <Card.Img src={user.avatar} className="img-fluid rounded-circle" />
                     </Col>
-                    <Col>
+                    <Col md={9} className="text-center">
                         <Card.Title>{user.username}</Card.Title>
                         <Card.Subtitle>{user.email}</Card.Subtitle>
+                        <hr />
                     </Col>
                 </Row>
                 <ListGroup>
-                    <ListGroupItem className="m-3">
-                        <Card.Text><span>Sobre {user.username}: </span> {user.description} </Card.Text>
-                    </ListGroupItem>
-                    <ListGroupItem className="m-1">
-                        <Card.Text><span>Intereses: </span>{user.interests}</Card.Text>
-                    </ListGroupItem>
-                    <ListGroupItem className="m-1">
-                        <Card.Text><span>Género: </span>{user.gender}</Card.Text>
-                    </ListGroupItem>
+                    <ListGroup.Item className="m-3">
+                        <Card.Text>
+                            <span>Sobre {user.username}: </span> {user.description}{" "}
+                        </Card.Text>
+                    </ListGroup.Item>
+                    <ListGroup.Item className="m-1">
+                        <Card.Text>
+                            <span>Intereses: </span>
+                            {user.interests}
+                        </Card.Text>
+                    </ListGroup.Item>
+                    <ListGroup.Item className="m-1">
+                        <Card.Text>
+                            <span>Género: </span>
+                            {user.gender}
+                        </Card.Text>
+                    </ListGroup.Item>
                 </ListGroup>
             </Card.Body>
         </Card>

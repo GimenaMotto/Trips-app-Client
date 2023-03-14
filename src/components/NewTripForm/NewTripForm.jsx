@@ -1,5 +1,5 @@
 import './NewTripForm.css'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import tripsService from '../../services/trips.services'
 import { Form, Row, Col, Button } from "react-bootstrap"
 import uploadServices from '../../services/upload.services'
@@ -8,6 +8,8 @@ import { AuthContext } from '../../contexts/auth.context'
 import FormError from '../FormError/FormError'
 import { MessageContext } from '../../contexts/message.context'
 import { ThemeContext } from '../../contexts/theme.context'
+import AutocompleteMap from '../AutocompleteMap/AutocompleteMap'
+
 
 
 const NewTripForm = ({ fireFinalActions }) => {
@@ -16,6 +18,16 @@ const NewTripForm = ({ fireFinalActions }) => {
     const { themeValue } = useContext(ThemeContext)
     const formStyle = themeValue === 'dark' ? 'light' : 'dark'
 
+    const [gmapsLoaded, setGmapsLoaded] = useState(false)
+
+    useEffect(() => {
+        window.initMap = () => setGmapsLoaded(true)
+        const gmapScriptEl = document.createElement(`script`)
+        gmapScriptEl.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBnYSn7VdpeCvZqaqKcJ62uAfr-p6t2M1g&libraries=places&callback=initMap`
+        document.querySelector(`body`).insertAdjacentElement(`beforeend`, gmapScriptEl)
+    }, [])
+
+
     const [tripData, setTripData] = useState({
         title: '',
         description: '',
@@ -23,7 +35,7 @@ const NewTripForm = ({ fireFinalActions }) => {
         endDate: '',
         images: [],
         budget: '',
-        destination: ''
+        destination: []
     })
 
     const { emitMessage } = useContext(MessageContext)
@@ -54,6 +66,8 @@ const NewTripForm = ({ fireFinalActions }) => {
 
     const [errors, setErrors] = useState([])
 
+    const [selected, setSelected] = useState(null)
+
     const handleFileUpload = e => {
 
         setLoadingImage(true)
@@ -73,7 +87,6 @@ const NewTripForm = ({ fireFinalActions }) => {
                 setLoadingImage(false)
             })
     }
-
 
 
     return (
@@ -96,9 +109,11 @@ const NewTripForm = ({ fireFinalActions }) => {
                 </Row>
                 <Row>
                     <Col md={6}>
+                        {/* {gmapsLoaded && <div><AutocompleteMap setSelected={setSelected} value={tripData.destination} onChange={handleInputChange} /></div>} */}
                         <Form.Group className="mb-3" controlId="destination">
-                            <Form.Label>Destino:</Form.Label>
-                            <Form.Control type="text" name="destination" value={tripData.destination} onChange={handleInputChange} />
+                            <Form.Label>Destino (longitud, latitud):</Form.Label>
+                            <Form.Control type="text" name="latitude" value={tripData.destination.latitude} onChange={handleInputChange} />
+                            <Form.Control type="text" name="longitude" value={tripData.destination.longitude} onChange={handleInputChange} />
                         </Form.Group>
                     </Col>
                 </Row>
