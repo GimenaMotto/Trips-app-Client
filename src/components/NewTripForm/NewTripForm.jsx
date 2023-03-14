@@ -17,6 +17,10 @@ const NewTripForm = ({ fireFinalActions }) => {
     const { user } = useContext(AuthContext)
     const { themeValue } = useContext(ThemeContext)
     const formStyle = themeValue === 'dark' ? 'light' : 'dark'
+    const [loadingImage, setLoadingImage] = useState()
+    const [errors, setErrors] = useState([])
+    const [selectedImages, setSelectedImages] = useState([]);
+    const { emitMessage } = useContext(MessageContext)
 
     const [gmapsLoaded, setGmapsLoaded] = useState(false)
 
@@ -38,7 +42,11 @@ const NewTripForm = ({ fireFinalActions }) => {
         destination: []
     })
 
-    const { emitMessage } = useContext(MessageContext)
+    useEffect(() => {
+        setTripData({ ...tripData, images: selectedImages })
+    }, [selectedImages])
+
+
 
     const navigate = useNavigate()
 
@@ -62,9 +70,7 @@ const NewTripForm = ({ fireFinalActions }) => {
             })
     }
 
-    const [loadingImage, setLoadingImage] = useState()
 
-    const [errors, setErrors] = useState([])
 
     const [selected, setSelected] = useState(null)
 
@@ -80,12 +86,20 @@ const NewTripForm = ({ fireFinalActions }) => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                setTripData({ ...tripData, images: res.data })
+                console.log(res.data)
                 setLoadingImage(false)
+                setSelectedImages([...selectedImages, ...res.data])
+                setTripData({ ...tripData, images: selectedImages })
             })
             .catch(err => {
                 setLoadingImage(false)
             })
+    }
+    const handleImageRemove = (index) => {
+        const newSelectedImages = [...selectedImages]
+        newSelectedImages.splice(index, 1)
+        setSelectedImages(newSelectedImages)
+        console.log(selectedImages)
     }
 
 
@@ -104,7 +118,14 @@ const NewTripForm = ({ fireFinalActions }) => {
                             <Form.Label>Imágenes del destino:</Form.Label>
                             <Form.Control type="file" onChange={handleFileUpload} name="images" multiple />
                         </Form.Group>
-
+                        <div className="d-flex flex-wrap">
+                            {selectedImages && selectedImages.length > 0 && selectedImages.map((image, index) => (
+                                <div key={index} className=" mb-3">
+                                    <img src={image} className="img-fluid prev-img"></img>
+                                    <button type="button" className="btn btn-danger position-absolute  " onClick={() => handleImageRemove(index)}>&times;</button>
+                                </div>
+                            ))}
+                        </div>
                     </Col>
                 </Row>
                 <Row>
@@ -147,7 +168,7 @@ const NewTripForm = ({ fireFinalActions }) => {
                 <div className="d-grid">
                     <Row>
                         <Col className="text-center">
-                            <Button className="px-5 mt-3" variant={formStyle} type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear viaje'}</Button>
+                            <Button className="px-5 m-2 mb-3" variant={formStyle} type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear viaje'}</Button>
                         </Col>
                     </Row>
                 </div>

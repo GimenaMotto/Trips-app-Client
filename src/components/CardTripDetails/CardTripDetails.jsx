@@ -76,6 +76,7 @@ const CardTripDetails = ({ trip, loadTripData }) => {
         setTravellersIds(trip.travellers?.map(elm => elm._id))
     }
 
+
     return (
         <Card className="CardTripDetails">
             <Card.Body>
@@ -110,6 +111,7 @@ const CardTripDetails = ({ trip, loadTripData }) => {
                     </ListGroupItem>
 
                 </ListGroup >
+
                 <Card.Text className="m-3 ml-2 mr-2">
                     <span className='viajeDescription'> Sobre el viaje:</span>  {trip.description}
                 </Card.Text>
