@@ -6,7 +6,6 @@ import './Map.css'
 import { Link, useNavigate } from 'react-router-dom'
 
 
-
 const Map = () => {
 
     const [selected, setSelected] = useState(null)
