@@ -19,7 +19,7 @@ const NewTripForm = ({ fireFinalActions }) => {
     const formStyle = themeValue === 'dark' ? 'light' : 'dark'
     const [loadingImage, setLoadingImage] = useState()
     const [errors, setErrors] = useState([])
-    const [selectedImages, setSelectedImages] = useState([]);
+    const [selectedImages, setSelectedImages] = useState([])
     const [selected, setSelected] = useState(null)
     const { emitMessage } = useContext(MessageContext)
 
@@ -69,9 +69,6 @@ const NewTripForm = ({ fireFinalActions }) => {
             })
     }
 
-
-
-
     const handleFileUpload = e => {
 
         setLoadingImage(true)
@@ -112,31 +109,13 @@ const NewTripForm = ({ fireFinalActions }) => {
                         </Form.Group>
                     </Col>
                     <Col md={6}>
-                        <Form.Group className="mb-3" controlId="images">
-                            <Form.Label>Imágenes del destino:</Form.Label>
-                            <Form.Control type="file" onChange={handleFileUpload} name="images" multiple />
+                        <Form.Group>
+                            <Form.Label>Destino:</Form.Label>
+                            {gmapsLoaded && <div><AutocompleteMap selected={selected} setSelected={setSelected} value={tripData.destination} onChange={handleInputChange} /></div>}
                         </Form.Group>
-                        <div className="d-flex flex-wrap">
-                            {selectedImages && selectedImages.length > 0 && selectedImages.map((image, index) => (
-                                <div key={index} className=" mb-3">
-                                    <img src={image} className="img-fluid prev-img"></img>
-                                    <button type="button" className="btn btn-danger position-absolute  " onClick={() => handleImageRemove(index)}>&times;</button>
-                                </div>
-                            ))}
-                        </div>
                     </Col>
                 </Row>
-                <Row>
-                    <Col md={6}>
-                        {gmapsLoaded && <div><AutocompleteMap selected={selected} setSelected={setSelected} value={tripData.destination} onChange={handleInputChange} /></div>}
-                        {/* <Form.Group className="mb-3" controlId="destination">
-                            <Form.Label>Destino (longitud, latitud):</Form.Label>
-                            <Form.Control type="text" name="latitude" value={tripData.destination.latitude} onChange={handleInputChange} />
-                            <Form.Control type="text" name="longitude" value={tripData.destination.longitude} onChange={handleInputChange} />
-                        </Form.Group> */}
-                    </Col>
 
-                </Row>
                 <Row>
                     <Col md={8}>
                         <Form.Group className="mb-3" controlId="images">
@@ -146,16 +125,14 @@ const NewTripForm = ({ fireFinalActions }) => {
                     </Col>
                 </Row>
                 <Row>
-                    {/* <Col md={6}> */}
-                    {/* <div className="d-flex flex-wrap"> */}
+
                     {selectedImages && selectedImages.length > 0 && selectedImages.map((image, index) => (
                         <Col md={6} key={index} className=" mb-3">
                             <img src={image} className="img-fluid prev-img"></img>
                             <button type="button" className="btn btn-danger position-absolute  " onClick={() => handleImageRemove(index)}>&times;</button>
                         </Col>
                     ))}
-                    {/* </div> */}
-                    {/* </Col> */}
+
                 </Row>
 
 

@@ -5,9 +5,7 @@ import tripsService from '../../services/trips.services'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import uploadServices from '../../services/upload.services'
-
 const EditTripForm = ({ fireFinalActions }) => {
-
     const navigate = useNavigate()
     const [newData, setNewData] = useState({
         title: '',
@@ -18,12 +16,10 @@ const EditTripForm = ({ fireFinalActions }) => {
         budget: '',
         destination: ''
     })
-
     const { trip_id } = useParams()
     useEffect(() => {
         loadData()
     }, [])
-
     const loadData = () => {
         tripsService
             .getOneTrip(trip_id)
@@ -36,15 +32,12 @@ const EditTripForm = ({ fireFinalActions }) => {
             })
             .catch(err => console.log(err))
     }
-
     const currentImages = newData.images
     console.log('esto es currentImages=>', currentImages)
-
     const handleInputChange = e => {
         const { value, name } = e.target
         setNewData({ ...newData, [name]: value })
     }
-
     const handleTripSubmit = e => {
         e.preventDefault()
         tripsService
@@ -56,18 +49,13 @@ const EditTripForm = ({ fireFinalActions }) => {
             })
             .catch(err => console.log(err))
     }
-
     const [loadingImage, setLoadingImage] = useState()
-
     const handleFileUpload = e => {
-
         setLoadingImage(true)
-
         const formData = new FormData()
         for (let key in e.target.files) {
             formData.append('imageData', e.target.files[key])
         }
-
         uploadServices
             .uploadimage(formData)
             .then(res => {
@@ -75,15 +63,12 @@ const EditTripForm = ({ fireFinalActions }) => {
                 setLoadingImage(false)
                 console.log('esto es res.data=>', res.data)
                 console.log('esto es newData', newData)
-
             })
             .catch(err => {
                 console.log(err)
                 setLoadingImage(false)
             })
     }
-
-
     return (
         <Form onSubmit={handleTripSubmit} >
             <Row>
@@ -134,6 +119,4 @@ const EditTripForm = ({ fireFinalActions }) => {
         </Form>
     )
 }
-
-
 export default EditTripForm
