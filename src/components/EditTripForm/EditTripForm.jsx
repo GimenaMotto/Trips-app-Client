@@ -6,8 +6,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import uploadServices from '../../services/upload.services'
 
-const EditTripForm = ({ fireFinalActions }) => {
 
+const EditTripForm = ({ fireFinalActions }) => {
     const navigate = useNavigate()
     const [newData, setNewData] = useState({
         title: '',
@@ -32,13 +32,11 @@ const EditTripForm = ({ fireFinalActions }) => {
                 const formatedStartDate = formatedDate(startDate)
                 const formatedEndDate = formatedDate(endDate)
                 setNewData({ title, description, startDate: formatedStartDate, endDate: formatedEndDate, images: data.images, budget, destination })
-                // console.log(data)
             })
             .catch(err => console.log(err))
     }
 
     const currentImages = newData.images
-    console.log('esto es currentImages=>', currentImages)
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -60,29 +58,22 @@ const EditTripForm = ({ fireFinalActions }) => {
     const [loadingImage, setLoadingImage] = useState()
 
     const handleFileUpload = e => {
-
         setLoadingImage(true)
-
         const formData = new FormData()
         for (let key in e.target.files) {
             formData.append('imageData', e.target.files[key])
         }
-
         uploadServices
             .uploadimage(formData)
             .then(res => {
                 setNewData({ ...newData, images: currentImages.concat(res.data) })
                 setLoadingImage(false)
-                console.log('esto es res.data=>', res.data)
-                console.log('esto es newData', newData)
-
             })
             .catch(err => {
                 console.log(err)
                 setLoadingImage(false)
             })
     }
-
 
     return (
         <Form onSubmit={handleTripSubmit} >
@@ -134,6 +125,4 @@ const EditTripForm = ({ fireFinalActions }) => {
         </Form>
     )
 }
-
-
 export default EditTripForm

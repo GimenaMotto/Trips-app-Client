@@ -41,7 +41,7 @@ const Map = () => {
     return (
         <>
 
-            <GoogleMap zoom={2.2} center={{ lat: 40.41, lng: -3.7 }} mapContainerClassName="map-container">
+            <GoogleMap zoom={2.5} center={{ lat: 4.087003031943222, lng: 3.6966068550106606 }} mapContainerClassName="map-container">
                 {trips.map(elm => {
                     return (
                         <Marker

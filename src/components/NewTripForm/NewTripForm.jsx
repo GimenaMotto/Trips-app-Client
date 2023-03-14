@@ -62,7 +62,7 @@ const NewTripForm = ({ fireFinalActions }) => {
             .then(({ data }) => {
                 emitMessage('Viaje creado')
                 fireFinalActions()
-                navigate('/viajes')
+                navigate('/')
             })
             .catch(err => {
                 setErrors(err.response.data.errorMessages)
@@ -97,7 +97,6 @@ const NewTripForm = ({ fireFinalActions }) => {
         const newSelectedImages = [...selectedImages]
         newSelectedImages.splice(index, 1)
         setSelectedImages(newSelectedImages)
-        console.log(selectedImages)
     }
 
 
@@ -128,12 +127,10 @@ const NewTripForm = ({ fireFinalActions }) => {
                 </Row>
                 <Row>
                     <Col md={6}>
-                        {gmapsLoaded && <div><AutocompleteMap selected={selected} setSelected={setSelected} value={tripData.destination} onChange={handleInputChange} /></div>}
-                        {/* <Form.Group className="mb-3" controlId="destination">
-                            <Form.Label>Destino (longitud, latitud):</Form.Label>
-                            <Form.Control type="text" name="latitude" value={tripData.destination.latitude} onChange={handleInputChange} />
-                            <Form.Control type="text" name="longitude" value={tripData.destination.longitude} onChange={handleInputChange} />
-                        </Form.Group> */}
+                        <Form.Group>
+                            <Form.Label>Destino:</Form.Label>
+                            {gmapsLoaded && <div><AutocompleteMap selected={selected} setSelected={setSelected} value={tripData.destination} onChange={handleInputChange} /></div>}
+                        </Form.Group>
                     </Col>
 
                 </Row>
@@ -146,16 +143,12 @@ const NewTripForm = ({ fireFinalActions }) => {
                     </Col>
                 </Row>
                 <Row>
-                    {/* <Col md={6}> */}
-                    {/* <div className="d-flex flex-wrap"> */}
                     {selectedImages && selectedImages.length > 0 && selectedImages.map((image, index) => (
                         <Col md={6} key={index} className=" mb-3">
                             <img src={image} className="img-fluid prev-img"></img>
                             <button type="button" className="btn btn-danger position-absolute  " onClick={() => handleImageRemove(index)}>&times;</button>
                         </Col>
                     ))}
-                    {/* </div> */}
-                    {/* </Col> */}
                 </Row>
 
 
