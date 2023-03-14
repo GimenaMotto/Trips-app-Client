@@ -18,12 +18,10 @@ const EditTripForm = ({ fireFinalActions }) => {
         budget: '',
         destination: ''
     })
-
     const { trip_id } = useParams()
     useEffect(() => {
         loadData()
     }, [])
-
     const loadData = () => {
         tripsService
             .getOneTrip(trip_id)
@@ -35,14 +33,11 @@ const EditTripForm = ({ fireFinalActions }) => {
             })
             .catch(err => console.log(err))
     }
-
     const currentImages = newData.images
-
     const handleInputChange = e => {
         const { value, name } = e.target
         setNewData({ ...newData, [name]: value })
     }
-
     const handleTripSubmit = e => {
         e.preventDefault()
         tripsService
@@ -54,9 +49,7 @@ const EditTripForm = ({ fireFinalActions }) => {
             })
             .catch(err => console.log(err))
     }
-
     const [loadingImage, setLoadingImage] = useState()
-
     const handleFileUpload = e => {
         setLoadingImage(true)
         const formData = new FormData()
@@ -74,7 +67,6 @@ const EditTripForm = ({ fireFinalActions }) => {
                 setLoadingImage(false)
             })
     }
-
     return (
         <Form onSubmit={handleTripSubmit} >
             <Row>
