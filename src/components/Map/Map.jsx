@@ -4,7 +4,6 @@ import tripsService from "../../services/trips.services"
 import AutocompleteMap from "../AutocompleteMap/AutocompleteMap"
 import './Map.css'
 
-
 const Map = () => {
 
     const [selected, setSelected] = useState(null)
@@ -32,7 +31,7 @@ const Map = () => {
             {/* <div><AutocompleteMap setSelected={setSelected} /></div> */}
             <GoogleMap zoom={2.2} center={{ lat: 40.41, lng: -3.7 }} mapContainerClassName="map-container">
                 {destinations.map(elm => {
-                    return <Marker position={{ lat: elm.coordinates[0], lng: elm.coordinates[1] }} />
+                    return <Marker key={elm._id} position={{ lat: elm.coordinates[0], lng: elm.coordinates[1] }} />
                 })}
             </GoogleMap>
         </>
