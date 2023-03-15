@@ -35,6 +35,8 @@ const Map = () => {
         navigate(`/detalles/${tripID}`)
     }
 
+
+
     const destinations = trips.map(elm => elm.destination)
 
 
@@ -45,10 +47,13 @@ const Map = () => {
                 {trips.map(elm => {
                     return (
                         <Marker
+                            key={elm._id}
                             title={elm.title}
                             position={{ lat: elm.destination.coordinates[0], lng: elm.destination.coordinates[1] }}
                             onClick={() => handleClick(elm._id)}
+
                         />
+
                     )
                 })}
             </GoogleMap>

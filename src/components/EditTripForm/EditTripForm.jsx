@@ -74,7 +74,7 @@ const EditTripForm = ({ fireFinalActions }) => {
             .then(({ data }) => {
                 setNewData(data)
                 fireFinalActions()
-                navigate('/viajes')
+                navigate('/')
 
             })
             .catch(err => console.log(err))
