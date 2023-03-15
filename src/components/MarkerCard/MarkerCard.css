@@ -1,0 +1,22 @@
+.MarkerCard .card-body {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.MarkerCard .card-title {
+    font-size: 1.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.MarkerCard .card-text {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.MarkerCard:hover {
+    transform: scale(1.01);
+}
