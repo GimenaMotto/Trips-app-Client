@@ -167,7 +167,6 @@ const NewTripForm = ({ fireFinalActions }) => {
                         </Col>
                     </Row>
                 </div>
-
             </Form>
         </div >
     )

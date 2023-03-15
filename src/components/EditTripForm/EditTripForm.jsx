@@ -105,7 +105,6 @@ const EditTripForm = ({ fireFinalActions }) => {
         setSelectedImages(newSelectedImages)
     }
 
-
     return (
         <div className="EditTripForm">
             <Form onSubmit={handleTripSubmit} >
