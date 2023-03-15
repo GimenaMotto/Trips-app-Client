@@ -62,7 +62,9 @@ const Map = () => {
                             onMouseOver={(event) => handleMarkerMouseOver(elm._id, event)}
                             onMouseOut={() => handleMarkerMouseOut()}
                             onClick={() => handleClick(elm._id)}
+
                         />
+
                     )
                 })}
                 {showTripCard && selectedTrip && (
