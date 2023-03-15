@@ -114,66 +114,60 @@ const NewTripForm = ({ fireFinalActions }) => {
                         </Form.Group>
                     </Col>
                 </Row>
+
+
                 <Row>
-                    <Col md={6}>
-                        <Form.Group>
-                            <Form.Label>Destino:</Form.Label>
-                            {gmapsLoaded && <div><AutocompleteMap selected={selected} setSelected={setSelected} value={tripData.destination} onChange={handleInputChange} /></div>}
+                    <Col md={8}>
+                        <Form.Group className="mb-3" controlId="images">
+                            <Form.Label>Imágenes del destino:</Form.Label>
+                            <Form.Control type="file" onChange={handleFileUpload} name="images" multiple />
                         </Form.Group>
                     </Col>
+                </Row>
+                <Row>
+                    {selectedImages && selectedImages.length > 0 && selectedImages.map((image, index) => (
+                        <Col md={6} key={index} className=" mb-3">
+                            <img src={image} className="img-fluid prev-img"></img>
+                            <button type="button" className="btn btn-danger position-absolute  " onClick={() => handleImageRemove(index)}>&times;</button>
+                        </Col>
+                    ))}
+                </Row>
 
+
+                <Row>
+                    <Col md={4}>
+                        <Form.Group className="mb-3" controlId="startDate">
+                            <Form.Label>Fecha de partida:</Form.Label>
+                            <Form.Control type="date" name="startDate" value={tripData.startDate} onChange={handleInputChange} />
+                        </Form.Group>
+                    </Col>
+                    <Col md={4}>
+                        <Form.Group className="mb-3" controlId="endDate">
+                            <Form.Label>Fecha de regreso:</Form.Label>
+                            <Form.Control type="date" name="endDate" value={tripData.endDate} onChange={handleInputChange} />
+                        </Form.Group>
+                    </Col>
+                    <Col md={4}>
+                        <Form.Group className="mb-3" controlId="budget">
+                            <Form.Label>Presupuesto:</Form.Label>
+                            <Form.Control type="text" name="budget" value={tripData.budget} onChange={handleInputChange} />
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Form.Group className="mb-3" controlId="description">
+                    <Form.Label>Descripción:</Form.Label>
+                    <Form.Control type="textarea" rows={2} name="description" value={tripData.description} onChange={handleInputChange} />
+                </Form.Group>
+
+                {errors.length > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
+
+                <div className="d-grid">
                     <Row>
-                        <Col md={8}>
-                            <Form.Group className="mb-3" controlId="images">
-                                <Form.Label>Imágenes del destino:</Form.Label>
-                                <Form.Control type="file" onChange={handleFileUpload} name="images" multiple />
-                            </Form.Group>
+                        <Col className="text-center">
+                            <Button className="px-5 m-2 mb-5" variant={formStyle} type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear viaje'}</Button>
                         </Col>
                     </Row>
-                    <Row>
-                        {selectedImages && selectedImages.length > 0 && selectedImages.map((image, index) => (
-                            <Col md={6} key={index} className=" mb-3">
-                                <img src={image} className="img-fluid prev-img"></img>
-                                <button type="button" className="btn btn-danger position-absolute  " onClick={() => handleImageRemove(index)}>&times;</button>
-                            </Col>
-                        ))}
-                    </Row>
-
-
-                    <Row>
-                        <Col md={4}>
-                            <Form.Group className="mb-3" controlId="startDate">
-                                <Form.Label>Fecha de partida:</Form.Label>
-                                <Form.Control type="date" name="startDate" value={tripData.startDate} onChange={handleInputChange} />
-                            </Form.Group>
-                        </Col>
-                        <Col md={4}>
-                            <Form.Group className="mb-3" controlId="endDate">
-                                <Form.Label>Fecha de regreso:</Form.Label>
-                                <Form.Control type="date" name="endDate" value={tripData.endDate} onChange={handleInputChange} />
-                            </Form.Group>
-                        </Col>
-                        <Col md={4}>
-                            <Form.Group className="mb-3" controlId="budget">
-                                <Form.Label>Presupuesto:</Form.Label>
-                                <Form.Control type="text" name="budget" value={tripData.budget} onChange={handleInputChange} />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Form.Group className="mb-3" controlId="description">
-                        <Form.Label>Descripción:</Form.Label>
-                        <Form.Control type="textarea" rows={2} name="description" value={tripData.description} onChange={handleInputChange} />
-                    </Form.Group>
-
-                    {errors.length > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
-
-                    <div className="d-grid">
-                        <Row>
-                            <Col className="text-center">
-                                <Button className="px-5 m-2 mb-5" variant={formStyle} type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Crear viaje'}</Button>
-                            </Col>
-                        </Row>
-                    </div>
+                </div>
             </Form>
         </div >
     )

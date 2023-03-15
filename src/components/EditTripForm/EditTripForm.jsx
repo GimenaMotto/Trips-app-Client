@@ -8,7 +8,15 @@ import uploadServices from '../../services/upload.services'
 
 
 const EditTripForm = ({ fireFinalActions }) => {
+
     const navigate = useNavigate()
+
+    const [loadingImage, setLoadingImage] = useState()
+
+    const { trip_id } = useParams()
+
+    const [selectedImages, setSelectedImages] = useState([])
+
     const [newData, setNewData] = useState({
         title: '',
         description: '',
@@ -18,7 +26,7 @@ const EditTripForm = ({ fireFinalActions }) => {
         budget: '',
         destination: ''
     })
-    const { trip_id } = useParams()
+
     useEffect(() => {
         loadData()
     }, [])
@@ -49,7 +57,7 @@ const EditTripForm = ({ fireFinalActions }) => {
             })
             .catch(err => console.log(err))
     }
-    const [loadingImage, setLoadingImage] = useState()
+
     const handleFileUpload = e => {
         setLoadingImage(true)
         const formData = new FormData()
@@ -59,6 +67,7 @@ const EditTripForm = ({ fireFinalActions }) => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
+                setSelectedImages([...selectedImages, ...res.data])
                 setNewData({ ...newData, images: currentImages.concat(res.data) })
                 setLoadingImage(false)
             })
@@ -67,54 +76,77 @@ const EditTripForm = ({ fireFinalActions }) => {
                 setLoadingImage(false)
             })
     }
+
+    const handleImageRemove = (index) => {
+        const newSelectedImages = [...selectedImages]
+        newSelectedImages.splice(index, 1)
+        setSelectedImages(newSelectedImages)
+    }
+
     return (
-        <Form onSubmit={handleTripSubmit} >
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3" controlId="title">
-                        <Form.Label>Título del viaje:</Form.Label>
-                        <Form.Control type="text" name="title" value={newData.title} onChange={handleInputChange} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Imágenes del destino:</Form.Label>
-                        <Form.Control type="file" name="images" multiple onChange={handleFileUpload} />
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Form.Group className="mb-3" controlId="destination">
-                <Form.Label>Destino:</Form.Label>
-                <Form.Control type="text" name="destination" value={newData.destination} onChange={handleInputChange} />
-            </Form.Group>
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3" controlId="startDate">
-                        <Form.Label>Fecha de partida:</Form.Label>
-                        <Form.Control type="date" name="startDate" value={newData.startDate} onChange={handleInputChange} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group className="mb-3" controlId="endDate">
-                        <Form.Label>Fecha de regreso:</Form.Label>
-                        <Form.Control type="date" name="endDate" value={newData.endDate} onChange={handleInputChange} />
-                    </Form.Group>
-                </Col>
-                <Col>
-                    <Form.Group className="mb-3" controlId="budget">
-                        <Form.Label>Presupuesto:</Form.Label>
-                        <Form.Control type="text" name="budget" value={newData.budget} onChange={handleInputChange} />
-                    </Form.Group>
-                </Col>
-            </Row>
-            <Form.Group className="mb-3" controlId="description">
-                <Form.Label>Descripción:</Form.Label>
-                <Form.Control type="textarea" rows={2} name="description" value={newData.description} onChange={handleInputChange} />
-            </Form.Group>
-            <div className="d-grid mb-5">
-                <Button variant="dark" type="submit">Editar viaje</Button>
-            </div>
-        </Form>
+        <div className="EditTripForm">
+            <Form onSubmit={handleTripSubmit} >
+                <Row>
+                    <Col md={6}>
+                        <Form.Group className="mb-3" controlId="title">
+                            <Form.Label>Título del viaje:</Form.Label>
+                            <Form.Control type="text" name="title" value={newData.title} onChange={handleInputChange} />
+                        </Form.Group>
+                    </Col>
+                    <Col md={6}>
+
+                        {/* <Form.Group className="mb-3" controlId="destination">
+                            <Form.Label>Destino:</Form.Label>
+                            <Form.Control type="text" name="destination" value={newData.destination} onChange={handleInputChange} />
+                        </Form.Group> */}
+                    </Col>
+                </Row>
+                <Row>
+                    <Col md={8}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Imágenes del destino:</Form.Label>
+                            <Form.Control type="file" name="images" multiple onChange={handleFileUpload} />
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row>
+                    {selectedImages && selectedImages.length > 0 && selectedImages.map((image, index) => (
+                        <Col md={6} key={index} className=" mb-3">
+                            <img src={image} className="img-fluid prev-img"></img>
+                            <button type="button" className="btn btn-danger position-absolute  " onClick={() => handleImageRemove(index)}>&times;</button>
+                        </Col>
+                    ))}
+                </Row>
+
+                <Row>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="startDate">
+                            <Form.Label>Fecha de partida:</Form.Label>
+                            <Form.Control type="date" name="startDate" value={newData.startDate} onChange={handleInputChange} />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="endDate">
+                            <Form.Label>Fecha de regreso:</Form.Label>
+                            <Form.Control type="date" name="endDate" value={newData.endDate} onChange={handleInputChange} />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group className="mb-3" controlId="budget">
+                            <Form.Label>Presupuesto:</Form.Label>
+                            <Form.Control type="text" name="budget" value={newData.budget} onChange={handleInputChange} />
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Form.Group className="mb-3" controlId="description">
+                    <Form.Label>Descripción:</Form.Label>
+                    <Form.Control type="textarea" rows={2} name="description" value={newData.description} onChange={handleInputChange} />
+                </Form.Group>
+                <div className="d-grid mb-5">
+                    <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Editar viaje'}</Button>
+                </div>
+            </Form>
+        </div>
     )
 }
 export default EditTripForm
