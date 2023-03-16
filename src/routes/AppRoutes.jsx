@@ -9,6 +9,8 @@ import EditTripPage from '../pages/EditTripPage/EditTripPage'
 import PrivateRoute from './PrivateRoute'
 import UsersPage from '../pages/UsersPage/UsersPage'
 import UsersProfilePage from '../pages/UserProfilePage/UserProfilePage'
+import EditProfilePage from '../pages/EditProfilePage/EditProfilePage'
+
 
 
 const AppRoutes = () => {
@@ -26,7 +28,7 @@ const AppRoutes = () => {
                 <Route path='/editar-viaje/:trip_id' element={<EditTripPage />} />
                 <Route path='/comunidad' element={<UsersPage />} />
                 <Route path='/perfil/:user_id' element={<UsersProfilePage />} />
-                <Route path='/editar-perfil/:user_id' element={<p>Page editar perfil-comp form editar perfil</p>} />
+                <Route path='/editar-perfil/:user_id' element={<EditProfilePage />} />
             </Route>
 
             <Route path='*' element={<p>404</p>} />

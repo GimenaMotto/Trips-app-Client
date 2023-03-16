@@ -30,7 +30,7 @@ const UserProfileCard = (props) => {
                         <div className="media align-items-end profile-head">
                             <div className="profile mr-3">
                                 <Image src={user.avatar} alt="..." width="200" className="rounded mb-2 img-thumbnail" />
-                                <Button href="#" variant="outline-dark" size="sm" block>Edit profile</Button>
+                                <Button href={`/editar-perfil/${user_id}`} variant="outline-dark" size="sm" block>Edit profile</Button>
                             </div>
                             <div className="media-body mb-5 text-white">
                                 <h4 className="mt-0 mb-1">{user.username}</h4>
