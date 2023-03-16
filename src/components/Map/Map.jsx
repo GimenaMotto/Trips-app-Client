@@ -4,11 +4,9 @@ import tripsService from "../../services/trips.services"
 import './Map.css'
 import { Link, useNavigate } from 'react-router-dom'
 import MarkerCard from "../MarkerCard/MarkerCard"
-import MapStyle from "./MapStyle"
 import markerMap from '../../images/Marker.png'
 import MapStyleDark from "./MapStyleDark"
 import MapStyleLight from "./MapStyleLight"
-import markerMap from '../../utils/Marker.png'
 import { ThemeContext } from "../../contexts/theme.context"
 
 
