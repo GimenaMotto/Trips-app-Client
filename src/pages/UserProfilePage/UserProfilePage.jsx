@@ -1,14 +1,18 @@
 import UserProfileCard from '../../components/UserProfileCard/UserProfileCard'
 import { Link } from 'react-router-dom'
 import tripsService from '../../services/trips.services'
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useParams } from "react-router-dom"
 import TripCard from '../../components/TripCard/TripCard'
-import { Col, Row, Container } from "react-bootstrap"
+import { Col, Row, Container, Button } from "react-bootstrap"
+import { ThemeContext } from '../../contexts/theme.context'
 
 
 const UsersProfilePage = () => {
 
+
+    const { themeValue, switchTheme } = useContext(ThemeContext)
+    const style = themeValue === 'dark' ? 'light' : 'dark'
     const [trips, setTrip] = useState([])
     const { user_id } = useParams()
 
@@ -40,9 +44,10 @@ const UsersProfilePage = () => {
                                 );
                             })}
                         </Row>
-                        <div className="d-flex justify-content-between align-items-center mb-4">
-                            <Link to="javascript:history.back()" className="btn btn-outline-dark">Volver</Link>
-                        </div>
+                        {/* <div className="d-flex justify-content-between align-items-center mb-4">
+                            <Link to="javascript:history.back()" className="btn btn-outline" variant={style}>Volver</Link>
+                        </div> */}
+                        <Link to="javascript:history.back()"> <Button variant={style} className='outline' as="span">Volver</Button></Link>
                     </Col>
                 </Row>
             </Container>

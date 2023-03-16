@@ -93,3 +93,7 @@ a {
 .App.light {
   background-color: #f8f9fa;
 }
+
+.App.dark .ProfilCard {
+  color: black;
+}
