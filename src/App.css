@@ -16,6 +16,8 @@
 
 /* negro bootstrap: #212529 */
 
+/* a. {color: #023E58} */
+
 a {
   text-decoration: none;
 }
@@ -90,10 +92,6 @@ a {
 .App.dark .MarkerCard {
   background-color: #2b3035;
 }
-
-/* .App.light {
-  background-color: #f8f9fa;
-} */
 
 .App.dark .ProfilCard {
   color: black;
