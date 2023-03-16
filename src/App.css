@@ -23,6 +23,7 @@ a {
 .App.light {
   background-color: #f8f9fa;
   color: #0e1525;
+  min-height: 100vh;
 }
 
 .App.dark {
@@ -90,6 +91,6 @@ a {
   background-color: #2b3035;
 }
 
-.App.light {
+/* .App.light {
   background-color: #f8f9fa;
-}
+} */

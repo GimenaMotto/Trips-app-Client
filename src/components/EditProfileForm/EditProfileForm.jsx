@@ -6,6 +6,7 @@ import { MessageContext } from "../../contexts/message.context"
 import usersServices from "../../services/users.services"
 import { AuthContext } from "../../contexts/auth.context"
 import FormError from '../FormError/FormError'
+import { ThemeContext } from '../../contexts/theme.context'
 
 
 
@@ -33,12 +34,19 @@ const EditProfileForm = () => {
     const navigate = useNavigate()
 
     const { user_id } = useParams()
+    const { themeValue } = useContext(ThemeContext)
+    const formStyle = themeValue === 'dark' ? 'light' : 'dark'
 
 
 
     const handleInputChange = e => {
         const { value, name } = e.target
-        setUsersData({ ...usersData, [name]: value })
+        if (name === 'interests') {
+            const selectedOptions = Array.from(e.target.selectedOptions, option => option.value)
+            setUsersData({ ...usersData, [name]: selectedOptions })
+        } else {
+            setUsersData({ ...usersData, [name]: value })
+        }
     }
 
     useEffect(() => {
@@ -49,8 +57,8 @@ const EditProfileForm = () => {
         usersServices
             .getOneUser(user_id)
             .then(({ data }) => {
-                const { username, email, avatar, description, interests, gender, age } = data
-                setUsersData({ username, email, avatar, description, interests, gender, age })
+                const { username, email, description, interests, gender, age } = data
+                setUsersData({ username, email, description, interests, gender, age })
 
             })
             .catch(err => console.error(err))
@@ -60,9 +68,10 @@ const EditProfileForm = () => {
         e.preventDefault()
 
         usersServices
-            .editProfile(user_id, usersData)
+            .editUser(user_id, usersData)
             .then(({ data }) => {
-                navigate(`/getOneUser/${user_id}`)
+                setUsersData(data)
+                navigate(`/perfil/${user_id}`)
                 refreshToken()
             })
             .catch(err => console.log(err))
@@ -70,48 +79,36 @@ const EditProfileForm = () => {
     }
 
 
-    const handleFileUpload = e => {
+    // const handleFileUpload = e => {
 
-        setLoadingImage(true)
+    //     setLoadingImage(true)
 
-        const formData = new FormData()
-        formData.append('imageData', e.target.files[0])
+    //     const formData = new FormData()
+    //     formData.append('imageData', e.target.files[0])
 
-        uploadServices
-            .uploadimage(formData)
-            .then(res => {
-                setUsersData({ ...usersData, avatar: res.data.cloudinary_url })
-                setLoadingImage(false)
-
-
-            })
-            .catch(err => {
-                console.log(err)
-                setLoadingImage(false)
-            })
-    }
+    //     uploadServices
+    //         .uploadimage(formData)
+    //         .then(res => {
+    //             setUsersData({ ...usersData, avatar: res.data })
+    //             // console.log(res.data)
+    //             setLoadingImage(false)
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //             setLoadingImage(false)
+    //         })
+    // }
 
     return (
 
         <Form onSubmit={handleFormSubmit}>
-            <Form.Group className="mb-3" controlId="email">
-                <Form.Label>Email:</Form.Label>
-                <Form.Control type="email" value={usersData.email} onChange={handleInputChange} name="email" />
-            </Form.Group>
-            <Row>
-                <Col>
-                    <Form.Group className="mb-3" controlId="username">
-                        <Form.Label>Nombre de usuario:</Form.Label>
-                        <Form.Control type="text" value={usersData.username} onChange={handleInputChange} name="username" />
-                    </Form.Group>
-                </Col>
-            </Row>
 
-            <Row>
+
+            <Row className="mb-3">
                 <Col>
                     <Form.Group>
                         <Form.Label>Género: </Form.Label>
-                        <Form.Select className="mb-3" controlId="gender" name="gender" onChange={handleInputChange}>
+                        <Form.Select className="mb-3" controlId="gender" name="gender" onChange={handleInputChange} >
                             <option value="No definido">No definido</option>
                             <option value="Mujer">Mujer</option>
                             <option value="Hombre">Hombre</option>
@@ -128,10 +125,10 @@ const EditProfileForm = () => {
                 </Col>
             </Row>
 
-            <Form.Group className="mb-3" controlId="avatar">
+            {/* <Form.Group className="mb-3" controlId="avatar">
                 <Form.Label>Avatar: </Form.Label>
                 <Form.Control type="file" onChange={handleFileUpload} multiple />
-            </Form.Group>
+            </Form.Group> */}
 
 
             <Form.Group className="mb-3">
@@ -158,15 +155,17 @@ const EditProfileForm = () => {
 
             {errors.length > 0 && <FormError>{errors.map(elm => <p>{elm}</p>)}</FormError>}
 
+
             <div className="d-grid">
                 <Row>
-                    <div className="d-grid mb-5">
-                        <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Editar perfil'}</Button>
-                    </div>
+                    <Col className="text-center">
+                        <Button className="px-5 mt-3 mb-5" variant={formStyle} type="submit" disabled={loadingImage}>{loadingImage ? 'Cargando imagen...' : 'Editar perfil'}</Button>
+                    </Col>
                 </Row>
             </div>
 
-        </Form>
+
+        </Form >
 
 
     )
