@@ -4,6 +4,7 @@ import './Navigation.css'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import { ThemeContext } from '../../contexts/theme.context'
+import logo from '../../utils/Logo.png'
 
 const Navigation = () => {
 
@@ -16,9 +17,20 @@ const Navigation = () => {
     return (
         <Navbar className='NavBar-custom' bg={navbarStyle} variant={navbarStyle} expand="lg">
             <Container>
-                <Link to='/'>
+
+                <Navbar.Brand href="/">
+                    <img
+                        src={logo}
+                        width="40"
+                        height="50"
+                        className="d-inline-block align-top navbar-brand"
+                        alt="Logo de mi sitio web"
+                    />
+                </Navbar.Brand>
+                {/* <Link to='/'>
                     <Navbar.Brand>Trips App</Navbar.Brand>
-                </Link>
+                    
+                </Link> */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">

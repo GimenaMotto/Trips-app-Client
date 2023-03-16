@@ -1,5 +1,5 @@
-.MarkerCard .card-body {
-    height: 200px;
+/* .MarkerCard .card-body {
+    height: 100px;
     display: flex;
     flex-direction: column;
 }
@@ -19,4 +19,8 @@
 
 .MarkerCard:hover {
     transform: scale(1.01);
+} */
+
+.MarkerCard {
+    transform: scale(0.1);
 }

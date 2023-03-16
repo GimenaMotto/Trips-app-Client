@@ -1,4 +1,4 @@
-.UserProfile span {
+/* .UserProfile span {
     font-weight: 500;
 }
 
@@ -16,4 +16,20 @@
 
 .UserProfile .email {
     color: #f8f9fa;
+} */
+
+.profile-head {
+    transform: translateY(3rem)
+}
+
+.cover-cardUser {
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat
+}
+
+body {
+    /* background: #a8a5af; */
+    min-height: 100vh;
+    overflow-x: hidden;
 }

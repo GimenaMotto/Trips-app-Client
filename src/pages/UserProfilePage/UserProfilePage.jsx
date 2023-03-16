@@ -25,21 +25,20 @@ const UsersProfilePage = () => {
 
     return (
 
-        <div className="gradient-custom-2" style={{ backgroundColor: '#9de2ff' }}>
+        <div>
             <Container className="py-5 h-100">
                 <Row className="justify-content-center align-items-center h-100">
-                    <Col lg="9" xl="7">
+                    <Col lg="6" xl="9">
                         <UserProfileCard />
                         <Row>
-                            {
-                                trips.map(elm => {
-                                    return (
-                                        <Col className='md-3 mt-3' key={elm._id}>
-                                            <TripCard {...elm} setTrip={setTrip} />
-                                        </Col>
-                                    )
-                                })
-                            }
+                            <h3>Mis Viajes:</h3>
+                            {trips.map(elm => {
+                                return (
+                                    <Col className='md-4 mt-3 col-6 col-md-4' key={elm._id}>
+                                        <TripCard {...elm} setTrip={setTrip} />
+                                    </Col>
+                                );
+                            })}
                         </Row>
                         <div className="d-flex justify-content-between align-items-center mb-4">
                             <Link to="javascript:history.back()" className="btn btn-outline-dark">Volver</Link>
@@ -48,6 +47,7 @@ const UsersProfilePage = () => {
                 </Row>
             </Container>
         </div>
+
     )
 }
 

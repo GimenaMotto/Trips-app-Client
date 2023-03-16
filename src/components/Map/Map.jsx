@@ -16,10 +16,6 @@ const Map = () => {
 
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     console.log(selectedTrip)
-    // }, [selectedTrip])
-
     useEffect(() => {
         loadTrips()
     }, [])
@@ -78,72 +74,3 @@ const Map = () => {
 }
 
 export default Map
-
-
-
-
-// import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
-// import { useMemo, useState, useEffect } from 'react'
-// import tripsService from "../../services/trips.services"
-// import './Map.css'
-// import { Link, useNavigate } from 'react-router-dom'
-// import TripCard from "../TripCard/TripCard"
-
-
-// const Map = () => {
-
-//     const [trips, setTrips] = useState([])
-
-//     const navigate = useNavigate()
-
-
-//     useEffect(() => {
-//         loadTrips()
-//     }, [])
-
-//     const loadTrips = () => {
-//         tripsService
-//             .getTrips()
-//             .then(({ data }) => {
-//                 setTrips(data)
-//             })
-//     }
-
-//     const handleClick = (tripID) => {
-//         navigate(`/detalles/${tripID}`)
-//     }
-
-//     const handleMarkerMouseOver = (tripID) => {
-//         <TripCard />
-//     }
-
-
-
-//     const destinations = trips.map(elm => elm.destination)
-
-
-//     return (
-//         <>
-
-//             <GoogleMap zoom={2.5} center={{ lat: 4.087003031943222, lng: 3.6966068550106606 }} mapContainerClassName="map-container">
-//                 {trips.map(elm => {
-//                     return (
-//                         <Marker
-//                             title={elm.title}
-//                             position={{ lat: elm.destination.coordinates[0], lng: elm.destination.coordinates[1] }}
-//                             onMouseOver={() => handleMarkerMouseOver(elm._id)}
-//                             onClick={() => handleClick(elm._id)}
-//                         />
-//                     )
-//                 })}
-//             </GoogleMap>
-//         </>
-
-
-
-//     )
-// }
-
-// export default Map
-
-
