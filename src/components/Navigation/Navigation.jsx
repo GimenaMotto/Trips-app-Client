@@ -4,9 +4,9 @@ import './Navigation.css'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import { ThemeContext } from '../../contexts/theme.context'
-import logo from '../../utils/Logo.png'
-import light from '../../utils/Light.png'
-import dark from '../../utils/Dark.png'
+import logo from '../../images/Logo.png'
+import light from '../../images/Light.png'
+import dark from '../../images/Dark.png'
 
 const Navigation = () => {
 
