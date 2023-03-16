@@ -5,6 +5,8 @@ import './Map.css'
 import { Link, useNavigate } from 'react-router-dom'
 import MarkerCard from "../MarkerCard/MarkerCard"
 import MapStyle from "./MapStyle"
+import markerMap from '../../utils/Marker.png'
+
 
 const Map = () => {
 
@@ -51,6 +53,7 @@ const Map = () => {
                 {trips.map(elm => {
                     return (
                         <Marker
+                            icon={markerMap}
                             key={elm._id}
                             title={elm.title}
                             position={{ lat: elm.destination.coordinates[0], lng: elm.destination.coordinates[1] }}

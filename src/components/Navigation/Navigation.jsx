@@ -5,19 +5,33 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import { ThemeContext } from '../../contexts/theme.context'
 import logo from '../../utils/Logo.png'
+import light from '../../utils/Light.png'
+import dark from '../../utils/Dark.png'
 
 const Navigation = () => {
 
     const { user, logout } = useContext(AuthContext)
     const { themeValue, switchTheme } = useContext(ThemeContext)
     const navbarStyle = themeValue === 'dark' ? 'light' : 'dark'
-    const themeText = themeValue === 'light' ? 'Tema oscuro' : 'Tema claro'
+    const themeText = themeValue === 'light' ? <img
+        src={dark}
+        width="40"
+        height="50"
+        className="d-inline-block align-top navbar-brand"
+        alt="Logo de mi sitio web"
+    /> : <img
+        src={light}
+        width="40"
+        height="50"
+        className="d-inline-block align-top navbar-brand"
+        alt="Logo de mi sitio web"
+    />
 
 
     return (
         <Navbar className='NavBar-custom' expand="lg">
-            <Container>
 
+            <Container>
                 <Navbar.Brand href="/">
                     <img
                         src={logo}
@@ -46,10 +60,22 @@ const Navigation = () => {
                             </Link>
                         </NavDropdown>
 
+
                     </Nav>
 
+
                     <Nav className="ms-auto">
-                        {user && <Link to={`/perfil/${user._id}`}><Nav.Link as="span">Bienvenidx {user.username}</Nav.Link></Link>}
+                        {/* {user && <Link to={`/perfil/${user._id}`}><Nav.Link as="span">Bienvenidx {user.username}</Nav.Link></Link>} */}
+
+                        {user && <Navbar.Brand href={`/perfil/${user._id}`}>
+                            <img
+                                src={user.avatar}
+                                alt="avatar"
+                                width="40"
+                                height="40"
+                                className="rounded-circle img-fluid"
+                            />
+                        </Navbar.Brand>}
 
                         {user ? <> <Link><Nav.Link as="span" onClick={logout}>Cerrar sesión</Nav.Link></Link>
                         </>
@@ -68,14 +94,20 @@ const Navigation = () => {
 
                         <Nav />
                     </Nav>
-                    <Nav>
+                    {/* <Nav>
                         <Link>
                             <Nav.Link as='span' onClick={switchTheme} className="d-flex"> {themeText}</Nav.Link>
                         </Link>
 
-                    </Nav>
+                    </Nav> */}
                 </Navbar.Collapse>
             </Container>
+            <Nav>
+                <Link>
+                    <Nav.Link as='span' onClick={switchTheme} className="d-flex"> {themeText}</Nav.Link>
+                </Link>
+
+            </Nav>
         </Navbar>
     )
 }
