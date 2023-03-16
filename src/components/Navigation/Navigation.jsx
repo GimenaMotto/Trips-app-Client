@@ -10,7 +10,7 @@ const Navigation = () => {
 
     const { user, logout } = useContext(AuthContext)
     const { themeValue, switchTheme } = useContext(ThemeContext)
-    const navbarStyle = themeValue === 'dark' ? 'light' : 'dark'
+    // const navbarStyle = themeValue === 'dark' ? 'light' : 'dark'
     const themeText = themeValue === 'light' ? 'Tema oscuro' : 'Tema claro'
 
 

@@ -4,16 +4,16 @@ a {
 }
 
 a:focus {
-    color: gray;
+    color: #023e58;
 }
 
 a:hover {
-    color: #555;
+    color: #023e58;
 
 }
 
 a:active {
-    color: #ccc;
+    color: #023e58;
 
 }
 
