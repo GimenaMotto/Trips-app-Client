@@ -15,16 +15,20 @@ a {
   text-decoration: none;
 }
 
+.App.light {
+  background-color: #f8f9fa;
+}
+
 .App.dark {
-  background-color: #212529;
+  background-color: #0d314b;
   color: #f8f9fa;
   min-height: 100vh;
 }
 
 .App.dark .TripCard {
-  background-color: #212529;
+  background-color: #254257;
   color: #f8f9fa;
-  border-color: gray;
+  border-color: #1d494a;
 }
 
 .App.dark footer {
@@ -33,13 +37,13 @@ a {
 }
 
 .App.dark .CardTripDetails {
-  background-color: #212529;
-  border-color: gray;
+  background-color: #254257;
+  border-color: #1d494a;
 }
 
 .App.dark .CardTripDetails .background-group {
-  background-color: #212529;
-  border-color: gray;
+  background-color: #254257;
+  border-color: #1d494a;
 }
 
 .App.dark .CardTripDetails .organizer {
@@ -51,12 +55,12 @@ a {
 }
 
 .App.dark .Usercard {
-  background-color: #212529;
+  background-color: #254257;
   color: #f8f9fa;
-  border-color: gray;
+  border-color: #1d494a;
 }
 
 .App.dark .Usercard .background-group {
-  background-color: #212529;
-  border-color: gray;
+  background-color: #254257;
+  border-color: #1d494a;
 }

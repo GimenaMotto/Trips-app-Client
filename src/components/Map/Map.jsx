@@ -4,8 +4,7 @@ import tripsService from "../../services/trips.services"
 import './Map.css'
 import { Link, useNavigate } from 'react-router-dom'
 import MarkerCard from "../MarkerCard/MarkerCard"
-
-
+import MapStyle from "./MapStyle"
 
 const Map = () => {
 
@@ -48,7 +47,7 @@ const Map = () => {
 
     return (
         <>
-            <GoogleMap zoom={2.5} center={{ lat: 4.087003031943222, lng: 3.6966068550106606 }} mapContainerClassName="map-container">
+            <GoogleMap zoom={2.5} options={{ styles: MapStyle }} center={{ lat: 4.087003031943222, lng: 3.6966068550106606 }} mapContainerClassName="map-container">
                 {trips.map(elm => {
                     return (
                         <Marker
