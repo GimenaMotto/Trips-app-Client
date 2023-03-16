@@ -5,7 +5,7 @@ import './Map.css'
 import { Link, useNavigate } from 'react-router-dom'
 import MarkerCard from "../MarkerCard/MarkerCard"
 import MapStyle from "./MapStyle"
-import markerMap from '../../utils/Marker.png'
+import markerMap from '../../images/Marker.png'
 
 
 const Map = () => {

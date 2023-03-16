@@ -59,13 +59,15 @@ const Navigation = () => {
                                 <NavDropdown.Item as='span' className='dropdown-item'>Crear viaje</NavDropdown.Item>
                             </Link>
                         </NavDropdown>
+                        <Link to='/sobre-nosotros'>
+                            <Nav.Link as='span'>Sobre nosotros</Nav.Link>
+                        </Link>
 
 
                     </Nav>
 
 
                     <Nav className="ms-auto">
-                        {/* {user && <Link to={`/perfil/${user._id}`}><Nav.Link as="span">Bienvenidx {user.username}</Nav.Link></Link>} */}
 
                         {user && <Navbar.Brand href={`/perfil/${user._id}`}>
                             <img
@@ -94,12 +96,7 @@ const Navigation = () => {
 
                         <Nav />
                     </Nav>
-                    {/* <Nav>
-                        <Link>
-                            <Nav.Link as='span' onClick={switchTheme} className="d-flex"> {themeText}</Nav.Link>
-                        </Link>
 
-                    </Nav> */}
                 </Navbar.Collapse>
             </Container>
             <Nav>

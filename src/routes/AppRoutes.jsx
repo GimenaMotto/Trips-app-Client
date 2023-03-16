@@ -10,6 +10,8 @@ import PrivateRoute from './PrivateRoute'
 import UsersPage from '../pages/UsersPage/UsersPage'
 import UsersProfilePage from '../pages/UserProfilePage/UserProfilePage'
 import EditProfilePage from '../pages/EditProfilePage/EditProfilePage'
+import AboutPage from '../pages/AboutPage/AboutPage'
+
 
 
 
@@ -20,6 +22,7 @@ const AppRoutes = () => {
             <Route path='/' element={<HomePage />} />
             <Route path='/registro' element={<SignupPage />} />
             <Route path='/iniciar-sesion' element={<LoginPage />} />
+            <Route path='/sobre-nosotros' element={<AboutPage />} />
 
             <Route element={<PrivateRoute />}>
                 <Route path='/viajes' element={<TripPage />} />
