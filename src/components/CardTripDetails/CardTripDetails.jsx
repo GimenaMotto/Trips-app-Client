@@ -17,6 +17,10 @@ const CardTripDetails = ({ trip, loadTripData }) => {
     const { trip_id } = useParams()
     const navigate = useNavigate()
     const style = themeValue === 'dark' ? 'light' : 'dark'
+    const [showMore, setShowMore] = useState(false)
+    const handleShowMore = () => {
+        setShowMore(!showMore)
+    }
 
     const handleTripDelete = () => {
         tripsService
@@ -113,7 +117,11 @@ const CardTripDetails = ({ trip, loadTripData }) => {
                 </ListGroup >
 
                 <Card.Text className="m-3 ml-2 mr-2">
-                    <span className='viajeDescription'> Sobre el viaje:</span>  {trip.description}
+                    <span className='viajeDescription'> Sobre el viaje:</span>   <p>{showMore ? trip.description : `${trip.description?.slice(0, 200)}(   ...)  `}
+                        <span className="ver m-2" onClick={handleShowMore}  >
+                            {showMore ? 'ver menos' : 'ver más'}
+                        </span>
+                    </p>
                 </Card.Text>
                 <Card.Text className="m-3 ml-2 mr-2">
                     <span className='budget'> Presupuesto:</span>  {trip.budget}

@@ -1,11 +1,13 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo, useState, useEffect, useContext } from 'react'
 import tripsService from "../../services/trips.services"
 import './Map.css'
 import { Link, useNavigate } from 'react-router-dom'
 import MarkerCard from "../MarkerCard/MarkerCard"
-import MapStyle from "./MapStyle"
+import MapStyleDark from "./MapStyleDark"
+import MapStyleLight from "./MapStyleLight"
 import markerMap from '../../utils/Marker.png'
+import { ThemeContext } from "../../contexts/theme.context"
 
 
 const Map = () => {
@@ -15,6 +17,8 @@ const Map = () => {
     const [selectedTrip, setSelectedTrip] = useState(null)
     const [mousePos, setMousePos] = useState([0, 0])
 
+    const { themeValue } = useContext(ThemeContext)
+    const mapStyle = themeValue === 'dark' ? MapStyleDark : MapStyleLight
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -49,7 +53,7 @@ const Map = () => {
 
     return (
         <>
-            <GoogleMap zoom={2.5} options={{ styles: MapStyle }} center={{ lat: 4.087003031943222, lng: 3.6966068550106606 }} mapContainerClassName="map-container">
+            <GoogleMap zoom={2.5} options={{ styles: mapStyle }} center={{ lat: 4.087003031943222, lng: 3.6966068550106606 }} mapContainerClassName="map-container">
                 {trips.map(elm => {
                     return (
                         <Marker

@@ -1,4 +1,4 @@
-const MapStyle = [
+const MapStyleDark = [
     {
         "elementType": "geometry",
         "stylers": [
@@ -232,4 +232,4 @@ const MapStyle = [
     }
 ]
 
-export default MapStyle
+export default MapStyleDark
