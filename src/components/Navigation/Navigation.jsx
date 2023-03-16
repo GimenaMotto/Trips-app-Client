@@ -15,7 +15,7 @@ const Navigation = () => {
 
 
     return (
-        <Navbar className='NavBar-custom' bg={navbarStyle} variant={navbarStyle} expand="lg">
+        <Navbar className='NavBar-custom' expand="lg">
             <Container>
 
                 <Navbar.Brand href="/">
@@ -27,10 +27,7 @@ const Navigation = () => {
                         alt="Logo de mi sitio web"
                     />
                 </Navbar.Brand>
-                {/* <Link to='/'>
-                    <Navbar.Brand>Trips App</Navbar.Brand>
-                    
-                </Link> */}
+
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -38,7 +35,7 @@ const Navigation = () => {
                             <Nav.Link as='span'>Home</Nav.Link>
                         </Link>
                         {user && <Link to='/comunidad'>
-                            <Nav.Link as="span">Comunidad 360</Nav.Link>
+                            <Nav.Link as="span">Comunidad</Nav.Link>
                         </Link>}
                         <NavDropdown title="Viajes" id="navbarScrollingDropdown">
                             <Link to='/viajes'>
