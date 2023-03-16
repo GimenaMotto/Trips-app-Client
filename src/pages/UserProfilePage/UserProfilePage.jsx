@@ -11,7 +11,7 @@ import { ThemeContext } from '../../contexts/theme.context'
 const UsersProfilePage = () => {
 
 
-    const { themeValue, switchTheme } = useContext(ThemeContext)
+    const { themeValue } = useContext(ThemeContext)
     const style = themeValue === 'dark' ? 'light' : 'dark'
     const [trips, setTrip] = useState([])
     const { user_id } = useParams()
@@ -44,9 +44,7 @@ const UsersProfilePage = () => {
                                 );
                             })}
                         </Row>
-                        {/* <div className="d-flex justify-content-between align-items-center mb-4">
-                            <Link to="javascript:history.back()" className="btn btn-outline" variant={style}>Volver</Link>
-                        </div> */}
+
                         <Link to="javascript:history.back()"> <Button variant={style} className='outline' as="span">Volver</Button></Link>
                     </Col>
                 </Row>
