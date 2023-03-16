@@ -1,6 +1,9 @@
 /* colors {
   oscuro: #061615;
   azulOscuro: #0d314b;
+  azulOscuro mapa: #0e1525;
+  azulmasclarodemapa: #023e58;
+  letras de mapa: #86bbb3;
   verdeOscuro: #1d494a;
   verdeClaro: #5abb9c;
   verdeMasClaro: #d0f0c7;
@@ -11,39 +14,57 @@
   rojoOscuro: #771d15;
 } */
 
+/* negro bootstrap: #212529 */
+
 a {
   text-decoration: none;
 }
 
 .App.light {
   background-color: #f8f9fa;
+  color: #0e1525;
 }
 
 .App.dark {
-  background-color: #0d314b;
+  background-color: #212529;
   color: #f8f9fa;
   min-height: 100vh;
 }
 
-.App.dark .TripCard {
-  background-color: #254257;
+.App.dark .NavBar-custom {
+  background-color: #86bbb3;
+
+}
+
+.App.light .NavBar-custom {
+  background-color: #86bbb3;
+
+}
+
+.App.light .footer {
+  background-color: #212529;
   color: #f8f9fa;
-  border-color: #1d494a;
+}
+
+.App.dark .TripCard {
+  background-color: #2b3035;
+  color: #f8f9fa;
+  border-color: #2b3035;
 }
 
 .App.dark footer {
-  background-color: #f8f9fa;
-  color: #212529;
+  background-color: #2b3035;
+  color: #f8f9fa;
 }
 
 .App.dark .CardTripDetails {
-  background-color: #254257;
-  border-color: #1d494a;
+  background-color: #2b3035;
+  border-color: #2b3035;
 }
 
 .App.dark .CardTripDetails .background-group {
-  background-color: #254257;
-  border-color: #1d494a;
+  background-color: #2b3035;
+  border-color: #2b3035;
 }
 
 .App.dark .CardTripDetails .organizer {
@@ -55,12 +76,20 @@ a {
 }
 
 .App.dark .Usercard {
-  background-color: #254257;
+  background-color: #2b3035;
   color: #f8f9fa;
-  border-color: #1d494a;
+  border-color: #2b3035;
 }
 
 .App.dark .Usercard .background-group {
-  background-color: #254257;
-  border-color: #1d494a;
+  background-color: #2b3035;
+  border-color: #2b3035;
+}
+
+.App.dark .MarkerCard {
+  background-color: #2b3035;
+}
+
+.App.light {
+  background-color: #f8f9fa;
 }
