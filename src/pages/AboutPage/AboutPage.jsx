@@ -11,7 +11,7 @@ const AboutPage = () => {
             </Row>
             <Row className="d-flex justify-content-center mb-5">
                 <Col md={8} className="text-center">
-                    <h1>Sobre nosotros:</h1>
+                    <h2>Sobre nosotros:</h2>
                     <p>Bienvenidos a 360, la comunidad de viajeros más emocionante de la red. Nuestro objetivo es conectar a personas de todo el mundo para que puedan disfrutar juntos de las aventuras más inolvidables.
                         <br />
                         Somos un equipo de viajeros apasionados que cree que viajar en compañía es la mejor forma de explorar nuevos lugares y culturas. En nuestra web, puedes publicar tus propios viajes y encontrar compañeros de viaje con los que compartir tus experiencias.

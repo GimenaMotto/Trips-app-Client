@@ -1,9 +1,10 @@
 Client Routes
 
 
-| URL | Description | Protected |
-| --- | ----------- | --------- |
-| /   | Home Page   |           |
+| URL             | Description | Protected |
+| --------------- | ----------- | --------- |
+| /               | Home Page   |           |
+| /sobre-nosotros | About us    |           |
 
 
 Trips Routes 

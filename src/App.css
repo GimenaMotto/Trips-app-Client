@@ -96,3 +96,12 @@ a {
 .App.dark .ProfilCard {
   color: black;
 }
+
+.App {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.1em;
+}
+
+.App h3 {
+  font-size: 2em;
+}

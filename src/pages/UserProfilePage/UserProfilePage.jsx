@@ -38,7 +38,7 @@ const UsersProfilePage = () => {
                             <h3>Mis Viajes:</h3>
                             {trips.map(elm => {
                                 return (
-                                    <Col className='md-4 mt-3 col-6 col-md-4' key={elm._id}>
+                                    <Col md={6} className='md-4 mt-3' key={elm._id}>
                                         <TripCard {...elm} setTrip={setTrip} />
                                     </Col>
                                 );

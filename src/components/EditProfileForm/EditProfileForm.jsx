@@ -79,26 +79,6 @@ const EditProfileForm = () => {
     }
 
 
-    // const handleFileUpload = e => {
-
-    //     setLoadingImage(true)
-
-    //     const formData = new FormData()
-    //     formData.append('imageData', e.target.files[0])
-
-    //     uploadServices
-    //         .uploadimage(formData)
-    //         .then(res => {
-    //             setUsersData({ ...usersData, avatar: res.data })
-    //             // console.log(res.data)
-    //             setLoadingImage(false)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //             setLoadingImage(false)
-    //         })
-    // }
-
     return (
 
         <Form onSubmit={handleFormSubmit}>
@@ -124,11 +104,6 @@ const EditProfileForm = () => {
                     </Form.Group>
                 </Col>
             </Row>
-
-            {/* <Form.Group className="mb-3" controlId="avatar">
-                <Form.Label>Avatar: </Form.Label>
-                <Form.Control type="file" onChange={handleFileUpload} multiple />
-            </Form.Group> */}
 
 
             <Form.Group className="mb-3">
