@@ -57,6 +57,7 @@ const Map = () => {
                 {trips.map(elm => {
                     return (
                         <Marker
+                            className="Marker"
                             icon={markerMap}
                             key={elm._id}
                             title={elm.title}
